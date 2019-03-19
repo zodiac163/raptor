@@ -14,5 +14,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
 ];
