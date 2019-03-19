@@ -6,10 +6,10 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => Yii::t('app', 'Menu'), 'options' => ['class' => 'header']],
-                    ['label' => Yii::t('app', 'Users'), 'url' => '#', 'items' => [
-                        ['label' => Yii::t('app', 'Manage roles'), 'icon' => 'file-code-o', 'url' => ['/permit/access/role']],
-                        ['label' => Yii::t('app', 'Manage access'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
+                    ['label' => Yii::t('app', 'NAV_MENU'), 'options' => ['class' => 'header']],
+                    ['label' => Yii::t('app', 'NAV_USERS'), 'url' => '#', 'items' => [
+                        ['label' => Yii::t('app', 'NAV_USERS_ROLES'), 'icon' => 'file-code-o', 'url' => ['/permit/access/role']],
+                        ['label' => Yii::t('app', 'NAV_USERS_ACCESS'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
                     ]],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],

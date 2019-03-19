@@ -17,5 +17,24 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'i18n' => [
+            'translations' => [
+                'frontend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'forceTranslation' => true,
+                ],
+                'backend*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'forceTranslation' => true,
+                ],
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'forceTranslation' => true,
+                ],
+            ],
+        ],
     ],
 ];
