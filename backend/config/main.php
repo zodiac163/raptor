@@ -14,6 +14,7 @@ return [
     'modules' => [
         'permit' => [
             'class' => 'developeruz\db_rbac\Yii2DbRbac',
+            'layout' => null,
             'params' => [
                 'userClass' => 'common\models\User'
             ]
