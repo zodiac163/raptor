@@ -19,7 +19,14 @@
 return [
     'NAV_MENU' => 'Меню',
     'NAV_USERS' => 'Пользователи',
+    'NAV_USERS_LIST' => 'Список пользователей',
     'NAV_USERS_ACCESS' => 'Управление доступами',
     'NAV_USERS_ROLES' => 'Управление ролями',
+    'MODULE_USERS_TITLE' => 'Пользователи',
+    'MODULE_USERS_CREATE' => 'Создать пользователя',
+    'MODULE_USERS_STATUS_DELETE' => 'Блок',
+    'MODULE_USERS_STATUS_ACTIVE' => 'Активен',
+    'MODULE_USERS_LABEL_STATUS' => 'Статус',
+    'MODULE_USERS_LABEL_CREATED' => 'Создан',
     'Administration' => '',
 ];

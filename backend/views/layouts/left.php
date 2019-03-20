@@ -8,6 +8,7 @@
                 'items' => [
                     ['label' => Yii::t('app', 'NAV_MENU'), 'options' => ['class' => 'header']],
                     ['label' => Yii::t('app', 'NAV_USERS'), 'url' => '#', 'items' => [
+                        ['label' => Yii::t('app', 'NAV_USERS_LIST'), 'icon' => 'file-code-o', 'url' => ['/user']],
                         ['label' => Yii::t('app', 'NAV_USERS_ROLES'), 'icon' => 'file-code-o', 'url' => ['/permit/access/role']],
                         ['label' => Yii::t('app', 'NAV_USERS_ACCESS'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
                     ]],

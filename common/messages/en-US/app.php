@@ -19,7 +19,14 @@
 return [
     'NAV_MENU' => 'Menu',
     'NAV_USERS' => 'Users',
+    'NAV_USERS_LIST' => 'Users list',
     'NAV_USERS_ACCESS' => 'Manage access',
     'NAV_USERS_ROLES' => 'Manage roles',
+    'MODULE_USERS_TITLE' => 'Users',
+    'MODULE_USERS_CREATE' => 'Create user',
+    'MODULE_USERS_STATUS_DELETE' => 'Block',
+    'MODULE_USERS_STATUS_ACTIVE' => 'Active',
+    'MODULE_USERS_LABEL_STATUS' => 'Status',
+    'MODULE_USERS_LABEL_CREATED' => 'Created at',
     'Administration' => '',
 ];
