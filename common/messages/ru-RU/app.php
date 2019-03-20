@@ -21,5 +21,7 @@ return [
     'NAV_USERS' => 'Пользователи',
     'NAV_USERS_ACCESS' => 'Управление доступами',
     'NAV_USERS_ROLES' => 'Управление ролями',
+    'NAV_MATERIAL' => 'Контент',
+    'NAV_MATERIAL_CATEGORY' => 'Категории',
     'Administration' => '',
 ];

@@ -21,5 +21,7 @@ return [
     'NAV_USERS' => 'Users',
     'NAV_USERS_ACCESS' => 'Manage access',
     'NAV_USERS_ROLES' => 'Manage roles',
+    'NAV_MATERIAL' => 'Content',
+    'NAV_MATERIAL_CATEGORY' => 'Category',
     'Administration' => '',
 ];
