@@ -37,4 +37,9 @@ return [
             ],
         ],
     ],
+    'modules' => [
+        'category' => [
+            'class' => 'common\modules\category\Module',
+        ],
+    ],
 ];

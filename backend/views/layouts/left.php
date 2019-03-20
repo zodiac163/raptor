@@ -11,6 +11,10 @@
                         ['label' => Yii::t('app', 'NAV_USERS_ROLES'), 'icon' => 'file-code-o', 'url' => ['/permit/access/role']],
                         ['label' => Yii::t('app', 'NAV_USERS_ACCESS'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
                     ]],
+                    ['label' => Yii::t('app', 'NAV_USERS'), 'url' => '#', 'items' => [
+                        ['label' => Yii::t('app', 'NAV_USERS_ROLES'), 'icon' => 'file-code-o', 'url' => ['/permit/access/role']],
+                        ['label' => Yii::t('app', 'NAV_USERS_ACCESS'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
+                    ]],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
