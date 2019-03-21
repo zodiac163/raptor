@@ -40,7 +40,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'level', 'published', 'created_user_id', 'modified_user_id'], 'integer'],
-            [['path', 'alias', 'title', 'created_user_id'], 'required'],
+            [['path', 'title', 'created_user_id'], 'required'],
             [['description', 'params', 'metadata'], 'string'],
             [['created_time', 'modified_time'], 'safe'],
             [['path', 'alias'], 'string', 'max' => 400],

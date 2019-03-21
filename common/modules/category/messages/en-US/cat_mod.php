@@ -34,4 +34,8 @@ return [
     'ID' => 'ID',
     'CATEGORY_PAGE_TITLE' => 'Categories',
     'CATEGORY_CREATE' => 'Create category',
+    'CATEGORY_SELECT_PARENT' => 'Select parent ...',
+    'CATEGORY_PARENT_ERROR' => 'Error on parent category check',
+    'CATEGORY_USER_ERROR' => 'Error on user check',
+    'CATEGORY_NOT_MODIFY' => 'Material not modify yet'
 ];

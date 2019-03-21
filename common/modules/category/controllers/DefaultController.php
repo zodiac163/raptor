@@ -69,7 +69,7 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        //var_dump($model->errors); exit;
         return $this->render('create', [
             'model' => $model,
         ]);

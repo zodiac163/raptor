@@ -17,7 +17,7 @@ class m190320_191802_create_category_table extends Migration
             'parent_id' => $this->integer()->notNull()->defaultValue(0),
             'level' => $this->integer()->notNull()->defaultValue(1),
             'path' => $this->string(400)->notNull(),
-            'alias' => $this->string(400)->notNull(),
+            'alias' => $this->string(400),
             'title' => $this->string(255)->notNull(),
             'description' => $this->text(),
             'published' => $this->boolean()->defaultValue(1),

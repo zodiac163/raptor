@@ -24,5 +24,11 @@ return [
     'NAV_MATERIAL' => 'Content',
     'NAV_MATERIAL_CATEGORY' => 'Category',
     'Administration' => '',
-    'SAVE' => 'Save'
+    'SAVE' => 'Save',
+    'YES' => 'Yes',
+    'NO' => 'No',
+    'UPDATE' => 'Update',
+    'DELETE' => 'Delete',
+    'CREATE' => 'Create',
+    'ROOT' => 'Root'
 ];

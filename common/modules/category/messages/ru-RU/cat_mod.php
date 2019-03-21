@@ -35,4 +35,8 @@ return [
     'ID' => 'ID',
     'CATEGORY_PAGE_TITLE' => 'Категории',
     'CATEGORY_CREATE' => 'Создать категорию',
+    'CATEGORY_SELECT_PARENT' => 'Выберите категорию ...',
+    'CATEGORY_PARENT_ERROR' => 'Ошибка определения категории',
+    'CATEGORY_USER_ERROR' => 'Ошибка определения пользователя',
+    'CATEGORY_NOT_MODIFY' => 'Материал еще не менялся'
 ];

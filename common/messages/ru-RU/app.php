@@ -24,5 +24,11 @@ return [
     'NAV_MATERIAL' => 'Контент',
     'NAV_MATERIAL_CATEGORY' => 'Категории',
     'Administration' => '',
-    'SAVE' => 'Сохранить'
+    'SAVE' => 'Сохранить',
+    'YES' => 'Да',
+    'NO' => 'Нет',
+    'UPDATE' => 'Изменить',
+    'DELETE' => 'Удалить',
+    'CREATE' => 'Создать',
+    'ROOT' => 'Корень'
 ];
