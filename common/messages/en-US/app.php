@@ -30,5 +30,8 @@ return [
     'UPDATE' => 'Update',
     'DELETE' => 'Delete',
     'CREATE' => 'Create',
-    'ROOT' => 'Root'
+    'ROOT' => 'Root',
+    'ALL' => 'All',
+    'RU' => 'Ru',
+    'EN' => 'En'
 ];

@@ -1,5 +1,7 @@
 <?php
 
+use common\models\User;
+use common\modules\category\models\Category;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
@@ -37,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($data->parent_id === 0) {
                         $parent = Yii::t('app', 'ROOT');
                     } else {
-                        $parentCategory = \common\modules\category\models\Category::findOne(['id' => $data->parent_id]);
+                        $parentCategory = Category::findOne(['id' => $data->parent_id]);
                         if ($parentCategory) {
                             $parent = Html::a($parentCategory->title, Url::to(['/master/category/default/view', 'id' => $parentCategory->id ]));
                         } else {
@@ -78,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'created_user_id',
                 'value' => function ($data) {
-                    $author = \common\models\User::findOne(['id' => $data->created_user_id]);
+                    $author = User::findOne(['id' => $data->created_user_id]);
                     if ($author) {
                         $created_user_id = $author->username;
                     } else {
@@ -98,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($data) {
                     if ($data->modified_user_id) {
-                        $author = \common\models\User::findOne(['id' => $data->modified_user_id]);
+                        $author = User::findOne(['id' => $data->modified_user_id]);
                         if ($author) {
                             $modified_user_id = $author->username;
                         } else {
