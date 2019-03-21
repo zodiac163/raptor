@@ -17,12 +17,21 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'NAV_MENU' => 'Меню',
-    'NAV_USERS' => 'Пользователи',
-    'NAV_USERS_ACCESS' => 'Управление доступами',
-    'NAV_USERS_ROLES' => 'Управление ролями',
-    'NAV_MATERIAL' => 'Контент',
-    'NAV_MATERIAL_CATEGORY' => 'Категории',
-    'Administration' => '',
-    'SAVE' => 'Сохранить'
+    'CATEGORY_ALIAS' => 'Alias',
+    'CATEGORY_CREATED_TIME' => 'Created time',
+    'CATEGORY_CREATED_USER_ID' => 'Created user ID',
+    'CATEGORY_DESCRIPTION' => 'Description',
+    'CATEGORY_LANGUAGE' => 'Language',
+    'CATEGORY_LEVEL' => 'Level',
+    'CATEGORY_METADATA' => 'Metadata',
+    'CATEGORY_MODIFIED_TIME' => 'Modified time',
+    'CATEGORY_MODIFIED_USER_ID' => 'Modified user ID',
+    'CATEGORY_PARAMS' => 'Parameters',
+    'CATEGORY_PARENT_ID' => 'Parent ID',
+    'CATEGORY_PATH' => 'Path',
+    'CATEGORY_PUBLISHED' => 'Published',
+    'CATEGORY_TITLE' => 'Title',
+    'ID' => 'ID',
+    'CATEGORY_PAGE_TITLE' => 'Categories',
+    'CATEGORY_CREATE' => 'Create category',
 ];

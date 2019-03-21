@@ -24,4 +24,5 @@ return [
     'NAV_MATERIAL' => 'Content',
     'NAV_MATERIAL_CATEGORY' => 'Category',
     'Administration' => '',
+    'SAVE' => 'Save'
 ];
