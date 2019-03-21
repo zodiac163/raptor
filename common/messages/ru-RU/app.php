@@ -28,5 +28,17 @@ return [
     'MODULE_USERS_STATUS_ACTIVE' => 'Активен',
     'MODULE_USERS_LABEL_STATUS' => 'Статус',
     'MODULE_USERS_LABEL_CREATED' => 'Создан',
+    'NAV_MATERIAL' => 'Контент',
+    'NAV_MATERIAL_CATEGORY' => 'Категории',
     'Administration' => '',
+    'SAVE' => 'Сохранить',
+    'YES' => 'Да',
+    'NO' => 'Нет',
+    'UPDATE' => 'Изменить',
+    'DELETE' => 'Удалить',
+    'CREATE' => 'Создать',
+    'ROOT' => 'Корень',
+    'ALL' => 'Любой',
+    'RU' => 'Рус',
+    'EN' => 'Анг'
 ];

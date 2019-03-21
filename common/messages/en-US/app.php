@@ -28,5 +28,17 @@ return [
     'MODULE_USERS_STATUS_ACTIVE' => 'Active',
     'MODULE_USERS_LABEL_STATUS' => 'Status',
     'MODULE_USERS_LABEL_CREATED' => 'Created at',
+    'NAV_MATERIAL' => 'Content',
+    'NAV_MATERIAL_CATEGORY' => 'Category',
     'Administration' => '',
+    'SAVE' => 'Save',
+    'YES' => 'Yes',
+    'NO' => 'No',
+    'UPDATE' => 'Update',
+    'DELETE' => 'Delete',
+    'CREATE' => 'Create',
+    'ROOT' => 'Root',
+    'ALL' => 'All',
+    'RU' => 'Ru',
+    'EN' => 'En'
 ];

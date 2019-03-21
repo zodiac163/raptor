@@ -5,6 +5,7 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'bootstrap' => ['category'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
@@ -35,6 +36,11 @@ return [
                     'forceTranslation' => true,
                 ],
             ],
+        ],
+    ],
+    'modules' => [
+        'category' => [
+            'class' => 'common\modules\category\Module',
         ],
     ],
 ];
