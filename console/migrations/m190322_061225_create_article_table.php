@@ -22,6 +22,7 @@ class m190322_061225_create_article_table extends Migration
             'images' => $this->text()->comment('Набор картинок для превью'),
             'featured' => $this->tinyInteger(3)->defaultValue(0)->comment('Избранное'),
             'ordering' => $this->integer()->notNull()->comment('Сортировка'),
+            'published' => $this->boolean()->notNull()->defaultValue(1),
             'hits' => $this->integer()->defaultValue(0)->comment('Коичество показов статьи'),
             'metadata' => $this->text(),
             'language' => $this->char(7)->defaultValue('*'),
