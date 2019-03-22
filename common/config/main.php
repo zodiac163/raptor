@@ -42,5 +42,8 @@ return [
         'category' => [
             'class' => 'common\modules\category\Module',
         ],
+        'article' => [
+            'class' => 'common\modules\article\Module',
+        ],
     ],
 ];
