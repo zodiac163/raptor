@@ -22,6 +22,7 @@ return [
     'NAV_USERS_LIST' => 'Users list',
     'NAV_USERS_ACCESS' => 'Manage access',
     'NAV_USERS_ROLES' => 'Manage roles',
+    'NAV_MATERIAL_ARTICLE' => 'Article',
     'MODULE_USERS_TITLE' => 'Users',
     'MODULE_USERS_CREATE' => 'Create user',
     'MODULE_USERS_STATUS_DELETE' => 'Block',

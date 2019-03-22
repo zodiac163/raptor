@@ -22,6 +22,7 @@ return [
     'NAV_USERS_LIST' => 'Список пользователей',
     'NAV_USERS_ACCESS' => 'Управление доступами',
     'NAV_USERS_ROLES' => 'Управление ролями',
+    'NAV_MATERIAL_ARTICLE' => 'Статьи',
     'MODULE_USERS_TITLE' => 'Пользователи',
     'MODULE_USERS_CREATE' => 'Создать пользователя',
     'MODULE_USERS_STATUS_DELETE' => 'Блок',
