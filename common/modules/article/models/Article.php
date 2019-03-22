@@ -16,6 +16,7 @@ use Yii;
  * @property string $images Набор картинок для превью
  * @property int $featured Избранное
  * @property int $ordering Сортировка
+ * @property int $published
  * @property int $hits Коичество показов статьи
  * @property string $metadata
  * @property string $language
@@ -40,9 +41,9 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'path', 'introtext', 'fulltext', 'ordering', 'created_user_id'], 'required'],
+            [['title', 'path', 'introtext', 'fulltext', 'ordering', 'created_user_id', 'published'], 'required'],
             [['fulltext', 'images', 'metadata'], 'string'],
-            [['cat_id', 'featured', 'ordering', 'hits', 'created_user_id', 'modified_user_id'], 'integer'],
+            [['cat_id', 'featured', 'ordering', 'hits', 'created_user_id', 'modified_user_id', 'published'], 'integer'],
             [['created_time', 'modified_time'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [['path'], 'string', 'max' => 400],
@@ -58,21 +59,22 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('art_mod', 'ID'),
-            'title' => Yii::t('art_mod', 'Title'),
-            'path' => Yii::t('art_mod', 'Path'),
-            'introtext' => Yii::t('art_mod', 'Introtext'),
-            'fulltext' => Yii::t('art_mod', 'Fulltext'),
-            'cat_id' => Yii::t('art_mod', 'Cat ID'),
-            'images' => Yii::t('art_mod', 'Images'),
-            'featured' => Yii::t('art_mod', 'Featured'),
-            'ordering' => Yii::t('art_mod', 'Ordering'),
-            'hits' => Yii::t('art_mod', 'Hits'),
-            'metadata' => Yii::t('art_mod', 'Metadata'),
-            'language' => Yii::t('art_mod', 'Language'),
-            'created_user_id' => Yii::t('art_mod', 'Created User ID'),
-            'created_time' => Yii::t('art_mod', 'Created Time'),
-            'modified_user_id' => Yii::t('art_mod', 'Modified User ID'),
-            'modified_time' => Yii::t('art_mod', 'Modified Time'),
+            'title' => Yii::t('art_mod', 'ARTICLE_TITLE'),
+            'path' => Yii::t('art_mod', 'ARTICLE_PATH'),
+            'introtext' => Yii::t('art_mod', 'ARTICLE_INTROTEXT'),
+            'fulltext' => Yii::t('art_mod', 'ARTICLE_FULLTEXT'),
+            'cat_id' => Yii::t('art_mod', 'ARTICLE_CAT_ID'),
+            'images' => Yii::t('art_mod', 'ARTICLE_IMAGES'),
+            'featured' => Yii::t('art_mod', 'ARTICLE_FEATURED'),
+            'ordering' => Yii::t('art_mod', 'ARTICLE_ORDERING'),
+            'published' => Yii::t('art_mod', 'ARTICLE_PUBLISHED'),
+            'hits' => Yii::t('art_mod', 'ARTICLE_HITS'),
+            'metadata' => Yii::t('art_mod', 'ARTICLE_METADATA'),
+            'language' => Yii::t('art_mod', 'ARTICLE_LANGUAGE'),
+            'created_user_id' => Yii::t('art_mod', 'ARTICLE_CREATED_USER_ID'),
+            'created_time' => Yii::t('art_mod', 'ARTICLE_CREATED_TIME'),
+            'modified_user_id' => Yii::t('art_mod', 'ARTICLE_MODIFIED_USER_ID'),
+            'modified_time' => Yii::t('art_mod', 'ARTICLE_MODIFIED_TIME'),
         ];
     }
 }

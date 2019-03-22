@@ -53,6 +53,9 @@ return [
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>/<id:\d+>' => '<module>/<controller>/<action>',
             ],
         ],
+        'assetManager' => [
+            'forceCopy' => true
+        ],
     ],
     'params' => $params,
 ];

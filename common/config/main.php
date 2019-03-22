@@ -4,6 +4,7 @@ return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@moduleArticle' => '@common/modules/article',
     ],
     'bootstrap' => ['category', 'article'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',

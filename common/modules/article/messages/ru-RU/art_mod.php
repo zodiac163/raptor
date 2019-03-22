@@ -25,7 +25,7 @@ return [
     'ARTICLE_HITS' => 'Показы',
     'ID' => 'ID',
     'ARTICLE_IMAGES' => 'Изображения',
-    'ARTICLE_INTROTEXT' => 'Аннонс',
+    'ARTICLE_INTROTEXT' => 'Анонс',
     'ARTICLE_LANGUAGE' => 'Язык',
     'ARTICLE_METADATA' => 'Metadata',
     'ARTICLE_MODIFIED_TIME' => 'Время изменения',
@@ -34,4 +34,7 @@ return [
     'ARTICLE_PATH' => 'Путь',
     'ARTICLE_PUBLISHED' => 'Опубликовано',
     'ARTICLE_TITLE' => 'Заголовок',
+    'ARTICLE_PAGE_TITLE' => 'Материалы',
+    'ARTICLE_CREATE' => 'Создать материал',
+    'ARTICLE_CAT_SELECT' => 'Выберите категорию ...',
 ];
