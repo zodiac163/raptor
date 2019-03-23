@@ -43,6 +43,9 @@ phpunit.phar
 /backend/web/robots.txt
 
 /static/article/*
+!/static/article/.gitkeep
 /static/uploads/*
+!/static/uploads/.gitkeep
 /static/uploads_thumbs/*
+!/static/uploads_thumbs/.gitkeep
 
