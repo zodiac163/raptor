@@ -10,11 +10,13 @@ namespace common\models;
 
 
 use Yii;
+use yii\helpers\Url;
 
 class RaptorHelper
 {
     public static function fileUpload() {
         $preview = $config = $errors = [];
+        $newShortUrl = '';
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
         $input = 'fileUpload';
         if (empty($_FILES[$input])) {
@@ -33,6 +35,7 @@ class RaptorHelper
             if ($tmpFilePath != ""){
                 $newFilePath = $path . $dir . '/'. $fileName;
                 $newFileUrl = $protocol . Yii::$app->params['fileStore'] . '/article/' . $dir . '/' . $fileName;
+                $newShortUrl = '/article/' . $dir . '/' . $fileName;
 
                 //Upload the file into the new path
                 if(move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -40,11 +43,11 @@ class RaptorHelper
                     $preview[] = $newFileUrl;
                     $_SESSION['upload_files'][] = $newFileUrl;
                     $config[] = [
-                        'key' => $fileId,
+                        'key' => $newShortUrl,
                         'caption' => $fileName,
                         'size' => $fileSize,
                         'downloadUrl' => $newFileUrl, // the url to download the file
-                        'url' => '/delete.php', // server api to delete the file based on key
+                        'url' => Url::to(['/article/default/removefile'])
                     ];
                 } else {
                     $errors[] = $fileName;
@@ -54,11 +57,30 @@ class RaptorHelper
             }
         }
 
-        $out = ['initialPreview' => $preview, 'initialPreviewConfig' => $config, 'initialPreviewAsData' => true];
+        $out = ['initialPreview' => $preview, 'initialPreviewConfig' => $config, 'initialPreviewAsData' => true, 'urlForSave' => $newShortUrl];
         if (!empty($errors)) {
             $img = count($errors) === 1 ? 'file "' . $errors[0]  . '" ' : 'files: "' . implode('", "', $errors) . '" ';
             $out['error'] = 'Oh snap! We could not upload the ' . $img . 'now. Please try again later.';
         }
         return $out;
+    }
+
+    public static function fileRemove() {
+        $file = Yii::getAlias('@common') . '/../static' . Yii::$app->request->post('key');
+        if (file_exists($file)) {
+            if (unlink($file)) {
+                return [
+                    'message' => Yii::t('art_mod', 'ARTICLE_FILE_DELETED')
+                ];
+            } else {
+                return [
+                    'error' => true
+                ];
+            }
+        } else {
+            return [
+                'message' => Yii::t('art_mod', 'ARTICLE_FILE_DELETED')
+            ];
+        }
     }
 }

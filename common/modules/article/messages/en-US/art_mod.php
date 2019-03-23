@@ -37,4 +37,5 @@ return [
     'ARTICLE_PAGE_TITLE' => 'Articles',
     'ARTICLE_CREATE' => 'Create Article',
     'ARTICLE_CAT_SELECT' => 'Select category ...',
+    'ARTICLE_FILE_DELETED' => 'File deleted',
 ];

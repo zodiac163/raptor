@@ -37,4 +37,5 @@ return [
     'ARTICLE_PAGE_TITLE' => 'Материалы',
     'ARTICLE_CREATE' => 'Создать материал',
     'ARTICLE_CAT_SELECT' => 'Выберите категорию ...',
+    'ARTICLE_FILE_DELETED' => 'Файл удален',
 ];

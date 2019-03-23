@@ -1,6 +1,7 @@
 <?php
 
 use common\modules\category\models\Category;
+use dosamigos\tinymce\TinyMce;
 use kartik\file\FileInput;
 use kartik\select2\Select2;
 use kartik\switchinput\SwitchInput;
@@ -14,11 +15,13 @@ common\modules\article\assets\ArticleAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model common\modules\article\models\Article */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $initialPreview array */
+/* @var $initialPreviewConfig array */
 ?>
 
 <div class="article-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
         <div class="col-md-6">
@@ -49,7 +52,26 @@ common\modules\article\assets\ArticleAsset::register($this);
     </div>
     <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'fulltext')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'fulltext')->widget(TinyMce::class, [
+                'options' => ['rows' => 6],
+                'language' => 'ru',
+                'clientOptions' => [
+                    'plugins' => [
+                        'advlist autolink lists link charmap hr preview pagebreak',
+                        'searchreplace wordcount textcolor visualblocks visualchars code fullscreen nonbreaking',
+                        'save insertdatetime media table contextmenu template paste image responsivefilemanager filemanager',
+                    ],
+                    'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager link image media',
+                    'external_filemanager_path' => '/master/plugins/responsivefilemanager/filemanager/',
+                    'filemanager_title' => 'Responsive Filemanager',
+                    'external_plugins' => [
+                        //Иконка/кнопка загрузки файла в диалоге вставки изображения.
+                        'filemanager' => '/master/plugins/responsivefilemanager/filemanager/plugin.min.js',
+                        //Иконка/кнопка загрузки файла в панеле иснструментов.
+                        'responsivefilemanager' => '/master/plugins/responsivefilemanager/tinymce/plugins/responsivefilemanager/plugin.min.js',
+                    ],
+                ]
+            ]); ?>
         </div>
     </div>
     <div class="row">
@@ -59,6 +81,8 @@ common\modules\article\assets\ArticleAsset::register($this);
                     'id' => 'fileUpload',
                     'name' => 'fileUpload[]',
                     'pluginOptions' => [
+                        'initialPreview' => $initialPreview,
+                        'initialPreviewConfig' => $initialPreviewConfig,
                         'showCaption' => false,
                         'showRemove' => false,
                         'showUpload' => false,
@@ -77,6 +101,7 @@ common\modules\article\assets\ArticleAsset::register($this);
                         'progressClass' => 'hide',
                     ]
                 ]); ?>
+                <?= $form->field($model, 'images')->hiddenInput()->label(false) ?>
             </div>
         </div>
     </div>

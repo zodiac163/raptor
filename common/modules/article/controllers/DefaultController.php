@@ -6,6 +6,7 @@ use common\models\RaptorHelper;
 use Yii;
 use common\modules\article\models\Article;
 use common\modules\article\models\ArticleSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -66,16 +67,37 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Article();
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+        //Предзаполнение автора и сортировки
+        $model->created_user_id = Yii::$app->user->id;
+        //TODO: при таком подходе сортировка может быть не уникальной, надо заполнять это поле через триггер CREATE!!!
+        $maxOrd = Article::find()->max('ordering');
+        $model->ordering = $maxOrd ? ($maxOrd+1) : 0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
         //Если не было сабмита, то чистим загруженные файлы перед показом чистой формы
-        if (empty($model->errors)) {
+        //Если был сабмит, то парсим массив изображений
+        if (!Yii::$app->request->isPost) {
             unset($_SESSION['upload_files']);
+        } else {
+            //TODO: убрать логику из контроллера
+            $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+            $images = json_decode($model->images);
+            foreach ($images->urls as $image) {
+                $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
+                $image->key = $image->url;
+                $image->url = Url::to(['/article/default/removefile']);
+                $initialPreviewConfig[] = $image;
+            }
         }
+
         return $this->render('create', [
             'model' => $model,
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig
         ]);
     }
 
@@ -99,9 +121,18 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * Upload files
+     * @return array
+     */
     public function actionUpload() {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return RaptorHelper::fileUpload();
+    }
+
+    public function actionRemovefile() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return RaptorHelper::fileRemove();
     }
 
     /**

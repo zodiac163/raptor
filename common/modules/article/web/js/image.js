@@ -2,8 +2,20 @@ $(function() {
   var $input = $("#fileUpload");
 
   $input.on("filebatchselected", function(event, files) {
-
     $input.fileinput("upload");
+  }).on('filebatchuploadsuccess', function(event, data) {
+    var responsedata = data.response;
+    if (responsedata.urlForSave) {
+      let images = $('#article-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#article-images').val());
+      let imagesArray = images.urls ? images.urls : [];
+      let imageObj = {}
+      imageObj.url = responsedata.urlForSave
+      imageObj.caption = responsedata.initialPreviewConfig[0].caption
+      imageObj.size = responsedata.initialPreviewConfig[0].size
+      imagesArray.push(imageObj)
+      images.urls = imagesArray
+      $('#article-images').val(JSON.stringify(images))
+    }
   }).on('fileclear', function(event) {
     //console.log("fileclear");
   }).on('filesuccessremove', function(event, id) {
@@ -21,13 +33,11 @@ $(function() {
     }).done(function( response ) {
 
     });
+  }).on('filedeleted', function(event, id, index) {
+    let images = $('#article-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#article-images').val());
+    let imagesArray = images.urls ? images.urls : [];
+    imagesArray = imagesArray.filter(x => x.url !== id);
+    images.urls = imagesArray
+    $('#article-images').val(JSON.stringify(images))
   })
-    .on("filedelete", function(jqXHR) {
-      alert();
-      var abort = true;
-      if (confirm("Удалить изображение?")) {
-        abort = false;
-      }
-      return abort;
-    });
 });
