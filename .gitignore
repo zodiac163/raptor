@@ -43,3 +43,6 @@ phpunit.phar
 /backend/web/robots.txt
 
 /static/article/*
+/static/uploads/*
+/static/uploads_thumbs/*
+
