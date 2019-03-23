@@ -54,8 +54,25 @@ class DefaultController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $imagesSource = $model->images;
+        $images = [];
+        if ($imagesSource) {
+            $imagesDecode = json_decode($imagesSource);
+            foreach ($imagesDecode->urls as $img) {
+                $t = getimagesize('http://' .Yii::$app->params['fileStore'] . $img->url);
+                $images[] = [
+                    'image' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'thumb' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'title' => $img->caption,
+                    'caption' => $img->caption,
+                    'size' => $t[0] . 'x' . $t[1]
+                ];
+            }
+        } // var_dump($images); exit;
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'images' => $images
         ]);
     }
 
@@ -67,13 +84,12 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Article();
-        $initialPreview = [];
-        $initialPreviewConfig = [];
         //Предзаполнение автора и сортировки
         $model->created_user_id = Yii::$app->user->id;
         //TODO: при таком подходе сортировка может быть не уникальной, надо заполнять это поле через триггер CREATE!!!
         $maxOrd = Article::find()->max('ordering');
         $model->ordering = $maxOrd ? ($maxOrd+1) : 0;
+        //TODO: если не задан псевдоним, то сделать  транслитирацию заголовка
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -83,21 +99,13 @@ class DefaultController extends Controller
         if (!Yii::$app->request->isPost) {
             unset($_SESSION['upload_files']);
         } else {
-            //TODO: убрать логику из контроллера
-            $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
-            $images = json_decode($model->images);
-            foreach ($images->urls as $image) {
-                $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
-                $image->key = $image->url;
-                $image->url = Url::to(['/article/default/removefile']);
-                $initialPreviewConfig[] = $image;
-            }
+            $imagePrep = $model->imagePreparation();
         }
 
         return $this->render('create', [
             'model' => $model,
-            'initialPreview' => $initialPreview,
-            'initialPreviewConfig' => $initialPreviewConfig
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
@@ -111,13 +119,23 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        //Предзаполнение автора изменений
+        $model->modified_user_id = Yii::$app->user->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        if (!Yii::$app->request->isPost) {
+            unset($_SESSION['upload_files']);
+        }
+
+        $imagePrep = $model->imagePreparation();
+
         return $this->render('update', [
             'model' => $model,
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 

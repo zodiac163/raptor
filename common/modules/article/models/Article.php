@@ -3,6 +3,7 @@
 namespace common\modules\article\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "article".
@@ -75,6 +76,25 @@ class Article extends \yii\db\ActiveRecord
             'created_time' => Yii::t('art_mod', 'ARTICLE_CREATED_TIME'),
             'modified_user_id' => Yii::t('art_mod', 'ARTICLE_MODIFIED_USER_ID'),
             'modified_time' => Yii::t('art_mod', 'ARTICLE_MODIFIED_TIME'),
+        ];
+    }
+
+    public function imagePreparation() {
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+
+        $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+        $images = json_decode($this->images);
+        foreach ($images->urls as $image) {
+            $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
+            $image->key = $image->url;
+            $image->url = Url::to(['/article/default/removefile']);
+            $initialPreviewConfig[] = $image;
+        }
+
+        return [
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig
         ];
     }
 }

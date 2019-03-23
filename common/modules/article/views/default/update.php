@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\article\models\Article */
+/* @var $initialPreview array - array of images' links for preview*/
+/* @var $initialPreviewConfig array - array of full images' information for preview*/
 
 $this->title = Yii::t('art_mod', 'Update Article: {name}', [
     'name' => $model->title,
@@ -18,6 +20,8 @@ $this->params['breadcrumbs'][] = Yii::t('art_mod', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'initialPreview' => $initialPreview,
+        'initialPreviewConfig' => $initialPreviewConfig
     ]) ?>
 
 </div>

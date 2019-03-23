@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f136adb34cddd36da97b43c7cd3ce9b7",
+    "content-hash": "93ba63e3ffee0af51d980806acad0502",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -163,6 +163,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/photoswipe",
+            "version": "v4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dimsemenov/PhotoSwipe.git",
+                "reference": "80607e12542a1a54ecefa837649e862b35dffd25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dimsemenov/PhotoSwipe/zipball/80607e12542a1a54ecefa837649e862b35dffd25",
+                "reference": "80607e12542a1a54ecefa837649e862b35dffd25"
             },
             "type": "bower-asset",
             "license": [
@@ -877,6 +895,48 @@
                 "yii2"
             ],
             "time": "2018-02-07T11:45:58+00:00"
+        },
+        {
+            "name": "powerkernel/yii2-photoswipe",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/powerkernel/yii2-photoswipe.git",
+                "reference": "901c0269bf2ff5728907ceadf3a619d78cfd2ad1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/powerkernel/yii2-photoswipe/zipball/901c0269bf2ff5728907ceadf3a619d78cfd2ad1",
+                "reference": "901c0269bf2ff5728907ceadf3a619d78cfd2ad1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/photoswipe": "~4.1.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "powerkernel\\photoswipe\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Harry Tang",
+                    "email": "harry@powerkernel.com"
+                }
+            ],
+            "description": "PhotoSwipe extension for Yii2",
+            "keywords": [
+                "extension",
+                "photoswipe",
+                "yii2"
+            ],
+            "time": "2017-12-01T14:03:32+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",

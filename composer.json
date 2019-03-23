@@ -24,7 +24,8 @@
         "kartik-v/yii2-widget-switchinput": "dev-master",
         "kartik-v/yii2-widget-fileinput": "dev-master",
         "tinymce/tinymce": "~4",
-        "2amigos/yii2-tinymce-widget": "*"
+        "2amigos/yii2-tinymce-widget": "*",
+        "powerkernel/yii2-photoswipe": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

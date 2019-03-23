@@ -53,7 +53,7 @@ common\modules\article\assets\ArticleAsset::register($this);
     <div class="row">
         <div class="col-md-12">
             <?= $form->field($model, 'fulltext')->widget(TinyMce::class, [
-                'options' => ['rows' => 6],
+                'options' => ['rows' => 30],
                 'language' => 'ru',
                 'clientOptions' => [
                     'plugins' => [
@@ -63,7 +63,7 @@ common\modules\article\assets\ArticleAsset::register($this);
                     ],
                     'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager link image media',
                     'external_filemanager_path' => '/master/plugins/responsivefilemanager/filemanager/',
-                    'filemanager_title' => 'Responsive Filemanager',
+                    'filemanager_title' => 'Filemanager',
                     'external_plugins' => [
                         //Иконка/кнопка загрузки файла в диалоге вставки изображения.
                         'filemanager' => '/master/plugins/responsivefilemanager/filemanager/plugin.min.js',
