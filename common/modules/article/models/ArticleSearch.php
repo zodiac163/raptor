@@ -17,8 +17,8 @@ class ArticleSearch extends Article
     public function rules()
     {
         return [
-            [['id', 'cat_id', 'featured', 'ordering', 'published', 'hits', 'created_user_id', 'modified_user_id'], 'integer'],
-            [['title', 'path', 'introtext', 'fulltext', 'images', 'metadata', 'language', 'created_time', 'modified_time'], 'safe'],
+            [['id', 'featured', 'ordering', 'published', 'hits', 'created_user_id', 'modified_user_id'], 'integer'],
+            [['cat_id', 'title', 'path', 'introtext', 'fulltext', 'images', 'metadata', 'language', 'created_time', 'modified_time'], 'safe'],
         ];
     }
 

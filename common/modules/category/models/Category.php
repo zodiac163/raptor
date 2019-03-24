@@ -3,6 +3,7 @@
 namespace common\modules\category\models;
 
 use Yii;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "category".
@@ -73,5 +74,35 @@ class Category extends \yii\db\ActiveRecord
             'modified_user_id' => Yii::t('cat_mod', 'CATEGORY_MODIFIED_USER_ID'),
             'modified_time' => Yii::t('cat_mod', 'CATEGORY_MODIFIED_TIME'),
         ];
+    }
+
+    public static function findByPath($path) {
+        $catArray = explode('/', $path);
+        $catSingle = $catArray[count($catArray)-1];
+        $cat = Category::findOne(['path' => $catSingle]); //var_dump($path); exit;
+        $catIds = [];
+        if (!$cat) {
+            throw new NotFoundHttpException(Yii::t('art_mod', 'The requested page does not exist.'));
+        } else {
+            $catIds[] = $cat->id;
+            $childs = self::findChildes($cat->id);
+            $catIds = array_merge($catIds, $childs);
+        }
+
+        return $catIds;
+    }
+
+    private static function findChildes($catId) {
+        $catArray = [];
+        $children = Category::find()->where(['parent_id' => $catId])->all();
+        if ($children) {
+            foreach ($children as $child) {
+                $catArray[] = $child->id;
+                $c = self::findChildes($child->id);
+                $catArray = array_merge($catArray, $c);
+            }
+        }
+
+        return $catArray;
     }
 }

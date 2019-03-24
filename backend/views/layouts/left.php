@@ -13,8 +13,8 @@
                         ['label' => Yii::t('app', 'NAV_USERS_ACCESS'), 'icon' => 'file-code-o', 'url' => ['/permit/access/permission']],
                     ]],
                     ['label' => Yii::t('app', 'NAV_MATERIAL'), 'url' => '#', 'items' => [
-                        ['label' => Yii::t('app', 'NAV_MATERIAL_CATEGORY'), 'icon' => 'file-code-o', 'url' => ['/category']],
-                        ['label' => Yii::t('app', 'NAV_MATERIAL_ARTICLE'), 'icon' => 'file-code-o', 'url' => ['/article']],
+                        ['label' => Yii::t('app', 'NAV_MATERIAL_CATEGORY'), 'icon' => 'file-code-o', 'url' => ['/category/default/index']],
+                        ['label' => Yii::t('app', 'NAV_MATERIAL_ARTICLE'), 'icon' => 'file-code-o', 'url' => ['/article/default/index']],
                     ]],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],

@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     } else {
                         $parentCategory = Category::findOne(['id' => $data->parent_id]);
                         if ($parentCategory) {
-                            $parent = Html::a($parentCategory->title, Url::to(['/master/category/default/view', 'id' => $parentCategory->id ]));
+                            $parent = Html::a($parentCategory->title, Url::to(['/category/default/view', 'id' => $parentCategory->id ]));
                         } else {
                             $parent = "<span class='has-error'>" . Yii::t('cat_mod', 'CATEGORY_PARENT_ERROR') . "</span>";
                         }
