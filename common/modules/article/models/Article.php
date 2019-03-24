@@ -2,6 +2,8 @@
 
 namespace common\modules\article\models;
 
+use common\models\Route;
+use dastanaron\translit\Translit;
 use Yii;
 use yii\helpers\Url;
 
@@ -85,16 +87,50 @@ class Article extends \yii\db\ActiveRecord
 
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
         $images = json_decode($this->images);
-        foreach ($images->urls as $image) {
-            $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
-            $image->key = $image->url;
-            $image->url = Url::to(['/article/default/removefile']);
-            $initialPreviewConfig[] = $image;
+        if ($images && isset($images->urls)) {
+            foreach ($images->urls as $image) {
+                $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
+                $image->key = $image->url;
+                $image->url = Url::to(['/article/default/removefile']);
+                $initialPreviewConfig[] = $image;
+            }
         }
 
         return [
             'initialPreview' => $initialPreview,
             'initialPreviewConfig' => $initialPreviewConfig
         ];
+    }
+
+    public function setRoute() {
+        if ($this->path === '') {
+            $translit = new Translit();
+            $this->path = $translit->translit($this->title, true, 'ru-en');
+            $this->save();
+        }
+
+        if (!Route::findAlias($this->path)) {
+            //Перед созданием нового алиаса надо проверить нет для этой статьи алиаса с другим путем
+            //На тот случай, если у материала поменялся path
+            if (!Route::updateByModel('article', $this->id, $this->path)) {
+                //Если алиаса еще не создавалось, то создаем
+                Route::createAlias($this->path, 'article/default/view', 'article', $this->id);
+            }
+        } else {
+            //Если такой алиас уже есть, то надо убедиться, что он привязан к данному материалу, а не к какому-то другому
+            if (!Route::findByModel('article', $this->id, $this->path)) {
+                //Значит такой алиас уже принадлежит какому-то другому материалу
+                //Меняем path. В таком виде он точно будет уникальным
+                $this->path = $this->id . '_article_' . $this->path;
+                $this->save();
+                //Снова проверяем алиас. Если его нет, то создаем
+                if (!Route::findAlias($this->path)) {
+                    if (!Route::updateByModel('article', $this->id, $this->path)) {
+                        //Если алиаса еще не создавалось, то создаем
+                        Route::createAlias($this->path, 'article/default/view', 'article', $this->id);
+                    }
+                }
+            }
+        }
     }
 }

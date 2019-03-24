@@ -53,7 +53,7 @@ common\modules\article\assets\ArticleAsset::register($this);
     <div class="row">
         <div class="col-md-12">
             <?= $form->field($model, 'fulltext')->widget(TinyMce::class, [
-                'options' => ['rows' => 30],
+                'options' => ['rows' => 22],
                 'language' => 'ru',
                 'clientOptions' => [
                     'plugins' => [

@@ -15,6 +15,12 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'cache' => false,
+            'rules' => [
+                ['class' => 'frontend\components\Pages\PagesUrlRule'],
+                ['class' => 'frontend\components\Pages\StrictParseRequest'],
+                'article/<id:\d+>' => 'article/default/view',
+            ]
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',

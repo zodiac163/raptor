@@ -89,9 +89,10 @@ class DefaultController extends Controller
         //TODO: при таком подходе сортировка может быть не уникальной, надо заполнять это поле через триггер CREATE!!!
         $maxOrd = Article::find()->max('ordering');
         $model->ordering = $maxOrd ? ($maxOrd+1) : 0;
-        //TODO: если не задан псевдоним, то сделать  транслитирацию заголовка
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //Устанавливаем роутинг для мматериала
+            $model->setRoute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
         //Если не было сабмита, то чистим загруженные файлы перед показом чистой формы
@@ -123,6 +124,8 @@ class DefaultController extends Controller
         $model->modified_user_id = Yii::$app->user->id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //Устанавливаем роутинг для мматериала
+            $model->setRoute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
