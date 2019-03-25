@@ -27,4 +27,13 @@ return [
     'MENU_TITLE' => 'Заголовок',
     'MENU_PAGE_TITLE' => 'Меню',
     'MENU_PAGE_CREATE' => 'Создать меню',
+    'MENU_PAGE_UPDATE' => 'Изменение ссылки',
+    'MENU_LINK_MENU_ID' => 'Меню',
+    'MENU_LINK_LINK' => 'Ссылка',
+    'MENU_LINK_LINKS' => 'Ссылки',
+    'MENU_LINK_PARENT' => 'Родитель',
+    'MENU_LINK_CREATE' => 'Создать ссылку',
+    'MENU_LINK_SELECT_PARENT' => 'Выберите родительскую ссылку ...',
+    'MENU_LINK_ADD_MORE_LINK' => 'Добавить еще ссылку',
+    'MENU_LINK_LINK_LIST' => 'Список ссылок',
 ];

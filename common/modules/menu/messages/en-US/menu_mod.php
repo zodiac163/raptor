@@ -27,4 +27,13 @@ return [
     'MENU_TITLE' => 'Title',
     'MENU_PAGE_TITLE' => 'Menu',
     'MENU_PAGE_CREATE' => 'Create menu',
+    'MENU_PAGE_UPDATE' => 'Update menu',
+    'MENU_LINK_MENU_ID' => 'Menu',
+    'MENU_LINK_LINK' => 'Link',
+    'MENU_LINK_LINKS' => 'Links',
+    'MENU_LINK_PARENT' => 'Parent',
+    'MENU_LINK_CREATE' => 'Create link',
+    'MENU_LINK_SELECT_PARENT' => 'Select parent link ...',
+    'MENU_LINK_ADD_MORE_LINK' => 'Add another link',
+    'MENU_LINK_LINK_LIST' => 'List of links',
 ];

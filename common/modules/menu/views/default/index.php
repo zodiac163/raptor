@@ -64,7 +64,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update}'
+                'buttons'=>[
+                    'links'=>function ($url, $model) {
+                        $customurl = Yii::$app->getUrlManager()->createUrl(['menu/menu-links/index','menu'=>$model->id]);
+                        return \yii\helpers\Html::a( '<span class="glyphicon glyphicon-link"></span>', $customurl,
+                            ['title' => Yii::t('menu_mod', 'MENU_LINK_LINK_LIST'), 'data-pjax' => '0']);
+                    }
+                ],
+                'template' => '{links} {view} {update}'
             ],
         ],
     ]); ?>
