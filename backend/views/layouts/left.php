@@ -1,3 +1,12 @@
+<?php
+use common\modules\menu\models\Menu;
+$menu = Menu::find()->all();
+$menuList[] = ['label' => Yii::t('app', 'NAV_MENU_LIST'), 'url' => ['/menu/default/index']];
+foreach ($menu as $item) {
+    $menuList[] = ['label' => $item->title, 'icon' => 'ellipsis-v', 'url' => ['/menu/menu-links/index', 'menu' => $item->id]];
+}
+//echo "<pre>"; var_dump($menuList); exit;
+ ?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -16,9 +25,9 @@
                         ['label' => Yii::t('app', 'NAV_MATERIAL_CATEGORY'), 'url' => ['/category/default/index']],
                         ['label' => Yii::t('app', 'NAV_MATERIAL_ARTICLE'), 'url' => ['/article/default/index']],
                     ]],
-                    ['label' => Yii::t('app', 'NAV_MENU'), 'icon' => 'bars', 'url' => '#', 'items' => [
-                        ['label' => Yii::t('app', 'NAV_MENU_LIST'), 'url' => ['/menu/default/index']],
-                    ]],
+                    ['label' => Yii::t('app', 'NAV_MENU'), 'icon' => 'bars', 'url' => '#', 'items' =>
+                        $menuList
+                    ],
                 ],
             ]
         ) ?>
