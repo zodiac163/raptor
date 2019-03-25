@@ -65,7 +65,7 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Menu();
-
+        $model->created_user_id = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

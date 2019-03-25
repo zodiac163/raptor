@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -7,16 +8,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\modules\menu\models\MenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('menu_mod', 'Menus');
+$this->title = Yii::t('menu_mod', 'MENU_PAGE_TITLE');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a(Yii::t('menu_mod', 'Create Menu'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('menu_mod', 'MENU_PAGE_CREATE'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,16 +23,49 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'title',
-            'published',
-            'language',
-            'created_user_id',
+            [
+                'attribute' => 'published',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return $data->published ?
+                        '<span class="text-success">' . Yii::t('app', 'YES') . '</span>' :
+                        '<span class="text-danger">' . Yii::t('app', 'NO') . '</span>';
+                },
+                'filter'=>[
+                    1 => Yii::t('app', 'YES'),
+                    0 => Yii::t('app', 'NO'),
+                ]
+            ],
+            [
+                'attribute' => 'language',
+                'filter'=>[
+
+                    '*' => Yii::t('app', 'ALL'),
+                    'ru-RU' => Yii::t('app', 'RU'),
+                    'en-US' => Yii::t('app', 'EN'),
+                ]
+            ],
+            [
+                'attribute' => 'created_user_id',
+                'value' => function ($data) {
+                    $author = User::findOne(['id' => $data->created_user_id]);
+                    if ($author) {
+                        $created_user_id = $author->username;
+                    } else {
+                        $created_user_id = "<span class='has-error'>" . Yii::t('cat_mod', 'CATEGORY_USER_ERROR') . "</span>";
+                    }
+                    return $created_user_id;
+                }
+            ],
             //'created_time',
             //'modified_user_id',
             //'modified_time',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update}'
+            ],
         ],
     ]); ?>
 </div>

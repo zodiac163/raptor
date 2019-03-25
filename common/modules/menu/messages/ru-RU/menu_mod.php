@@ -25,4 +25,6 @@ return [
     'MENU_MODIFIED_USER_ID' => 'Изменил',
     'MENU_PUBLISHED' => 'Опубликовано',
     'MENU_TITLE' => 'Заголовок',
+    'MENU_PAGE_TITLE' => 'Меню',
+    'MENU_PAGE_CREATE' => 'Создать меню',
 ];

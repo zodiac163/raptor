@@ -25,4 +25,6 @@ return [
     'MENU_MODIFIED_USER_ID' => 'Modified user ID',
     'MENU_PUBLISHED' => 'Published',
     'MENU_TITLE' => 'Title',
+    'MENU_PAGE_TITLE' => 'Menu',
+    'MENU_PAGE_CREATE' => 'Create menu',
 ];
