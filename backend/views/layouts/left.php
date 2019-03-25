@@ -17,7 +17,7 @@
                         ['label' => Yii::t('app', 'NAV_MATERIAL_ARTICLE'), 'url' => ['/article/default/index']],
                     ]],
                     ['label' => Yii::t('app', 'NAV_MENU'), 'icon' => 'bars', 'url' => '#', 'items' => [
-
+                        ['label' => Yii::t('app', 'NAV_MENU_LIST'), 'url' => ['/menu/default/index']],
                     ]],
                 ],
             ]
