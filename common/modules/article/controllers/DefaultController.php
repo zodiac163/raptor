@@ -70,6 +70,11 @@ class DefaultController extends Controller
                 ];
             }
         } // var_dump($images); exit;
+        
+        
+        $model->checkHits();
+        
+        
         return $this->render('view', [
             'model' => $model,
             'images' => $images

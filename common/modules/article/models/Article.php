@@ -133,4 +133,45 @@ class Article extends \yii\db\ActiveRecord
             }
         }
     }
+    
+    public function checkHits() {
+        
+        $session = Yii::$app->session;
+        if(!$session->has('hits_array'))
+            
+            {
+            
+            $session['hits_array'] = array();
+            
+            var_dump($session['hits_array']);
+            echo "Создан новый массив";
+            }
+            
+            $temp = $session['hits_array'];
+            
+            if(!in_array($this->id, $session['hits_array']) || empty($temp)){
+                $temp[] = $this->id;
+                $session['hits_array'] = $temp;
+                
+                var_dump($session['hits_array']);
+                echo "Значение добавлено!";
+                
+                
+                
+                $this->hits ++;
+                $this->save();
+                
+                exit;
+            }
+            
+            else 
+                {
+                
+                var_dump($session['hits_array']);
+                echo "Значение дублируется!";
+                
+                }
+            
+            
+    }
 }
