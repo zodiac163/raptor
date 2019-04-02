@@ -133,45 +133,45 @@ class Article extends \yii\db\ActiveRecord
             }
         }
     }
-    
+
     public function checkHits() {
-        
+
         $session = Yii::$app->session;
         if(!$session->has('hits_array'))
-            
+
             {
-            
-            $session['hits_array'] = array();
-            
+
+            $session['hits_array'] = array(); // Не надо обращаться напрямую к session. Надо через $session->set
+
             var_dump($session['hits_array']);
             echo "Создан новый массив";
             }
-            
-            $temp = $session['hits_array'];
-            
-            if(!in_array($this->id, $session['hits_array']) || empty($temp)){
+
+            $temp = $session['hits_array']; // Не надо обращаться напрямую к session. Надо через $session->get
+
+            if(!in_array($this->id, $session['hits_array']) || empty($temp)){ // Если значение уже в переменной $temp, то зачем опять обращение к $session?
                 $temp[] = $this->id;
-                $session['hits_array'] = $temp;
-                
+                $session['hits_array'] = $temp; // Не надо обращаться напрямую к session
+
                 var_dump($session['hits_array']);
                 echo "Значение добавлено!";
-                
-                
-                
-                $this->hits ++;
+
+
+
+                $this->hits ++; // опасное обновление. Вот тут инфа: https://www.yiiframework.com/doc/guide/2.0/ru/db-active-record#updating-counters
                 $this->save();
-                
+
                 exit;
             }
-            
-            else 
+
+            else
                 {
-                
+
                 var_dump($session['hits_array']);
                 echo "Значение дублируется!";
-                
+
                 }
-            
-            
+
+
     }
 }
