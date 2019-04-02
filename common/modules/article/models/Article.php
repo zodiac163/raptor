@@ -137,22 +137,16 @@ class Article extends \yii\db\ActiveRecord
     public function checkHits() {
 
         $session = Yii::$app->session;
-        if(!$session->has('hits_array'))
-            {
-
+        if (!$session->has('hits_array')) {
             $session->set('hits_array', array());
-            
-            }
+        }
 
-            $temp = $session->get('hits_array');
-            if(!in_array($this->id, $temp) || empty($temp))
-                {
-                
-                $temp[] = $this->id;
-                $session->set('hits_array', $temp);
+        $temp = $session->get('hits_array');
+        if (!in_array($this->id, $temp) || empty($temp)) {
+            $temp[] = $this->id;
+            $session->set('hits_array', $temp);
+            $this->updateCounters(['hits' => 1]);
 
-                $this->updateCounters(['hits' => 1]);
-                
-                }
+        }
     }
 }
