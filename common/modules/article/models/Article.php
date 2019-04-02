@@ -138,40 +138,21 @@ class Article extends \yii\db\ActiveRecord
 
         $session = Yii::$app->session;
         if(!$session->has('hits_array'))
-
             {
 
-            $session['hits_array'] = array(); // Не надо обращаться напрямую к session. Надо через $session->set
-
-            var_dump($session['hits_array']);
-            echo "Создан новый массив";
+            $session->set('hits_array', array());
+            
             }
 
-            $temp = $session['hits_array']; // Не надо обращаться напрямую к session. Надо через $session->get
-
-            if(!in_array($this->id, $session['hits_array']) || empty($temp)){ // Если значение уже в переменной $temp, то зачем опять обращение к $session?
-                $temp[] = $this->id;
-                $session['hits_array'] = $temp; // Не надо обращаться напрямую к session
-
-                var_dump($session['hits_array']);
-                echo "Значение добавлено!";
-
-
-
-                $this->hits ++; // опасное обновление. Вот тут инфа: https://www.yiiframework.com/doc/guide/2.0/ru/db-active-record#updating-counters
-                $this->save();
-
-                exit;
-            }
-
-            else
+            $temp = $session->get('hits_array');
+            if(!in_array($this->id, $temp) || empty($temp))
                 {
+                
+                $temp[] = $this->id;
+                $session->set('hits_array', $temp);
 
-                var_dump($session['hits_array']);
-                echo "Значение дублируется!";
-
+                $this->updateCounters(['hits' => 1]);
+                
                 }
-
-
     }
 }
