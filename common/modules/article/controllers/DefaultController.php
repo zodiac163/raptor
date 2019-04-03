@@ -3,6 +3,8 @@
 namespace common\modules\article\controllers;
 
 use common\models\RaptorHelper;
+use common\modules\article\models\Tag;
+use \common\modules\article\models\TagArticle;
 use Yii;
 use common\modules\article\models\Article;
 use common\modules\article\models\ArticleSearch;
@@ -96,8 +98,26 @@ class DefaultController extends Controller
         $model->ordering = $maxOrd ? ($maxOrd+1) : 0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //Устанавливаем роутинг для мматериала
+            //Устанавливаем роутинг для материала
             $model->setRoute();
+            
+            foreach (Yii::$app->request->post('Article')['tags'] as $tag) { 
+                if (!is_numeric($tag))
+                {
+                    $newTag = new Tag;
+                    $newTag->title = $tag;
+                    $newTag->created_user_id = Yii::$app->user->id;
+                    $newTag->save();
+                    
+                }
+                
+                $tagArticle = new TagArticle;
+                $tagArticle->article_id = $model->id;
+                $tagArticle->tag_id = (is_numeric($tag))? $tag : $newTag->id;
+                $tagArticle->save();
+
+          }
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
         //Если не было сабмита, то чистим загруженные файлы перед показом чистой формы
@@ -110,6 +130,8 @@ class DefaultController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'tags' => Tag::getAllTags(),
+            'currentTags' => array(),
             'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
             'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
@@ -131,6 +153,26 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //Устанавливаем роутинг для мматериала
             $model->setRoute();
+            
+            TagArticle::deleteAll(['article_id' => $model->id]);
+            
+            foreach (Yii::$app->request->post('Article')['tags'] as $tag) {
+                if (!is_numeric($tag))
+                {
+                    $newTag = new Tag;
+                    $newTag->title = $tag;
+                    $newTag->created_user_id = Yii::$app->user->id;
+                    $newTag->save();
+                    
+                }
+                
+                $tagArticle = new TagArticle;
+                $tagArticle->article_id = $model->id;
+                $tagArticle->tag_id = (is_numeric($tag))? $tag : $newTag->id;
+                $tagArticle->save();
+
+          }
+          
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -139,9 +181,11 @@ class DefaultController extends Controller
         }
 
         $imagePrep = $model->imagePreparation();
-
+        
         return $this->render('update', [
             'model' => $model,
+            'tags' => Tag::getAllTags(),
+            'currentTags' => $model->tags,
             'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
             'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);

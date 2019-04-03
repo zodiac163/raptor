@@ -105,6 +105,28 @@ common\modules\article\assets\ArticleAsset::register($this);
             </div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <?= '<label class="control-label">Выберите тэги</label>';?>
+                <?= $form->field($model, 'tags')->widget(Select2::class, [
+                    'name' => 'color_2',
+                    'value' => ArrayHelper::map($currentTags, 'id', 'title'),
+                    'data' => ArrayHelper::map($tags, 'id', 'title'),
+                    'maintainOrder' => true,
+                    'options' => ['placeholder' => 'Select a color ...', 'multiple' => true],
+                    'pluginOptions' => [
+                        'tags' => true,
+                        'maximumInputLength' => 10
+                    ],
+                ]);
+                ?>
+            </div>
+        </div>
+    </div>    
+    
+    
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'published')->widget(SwitchInput::class, [
