@@ -36,7 +36,7 @@ class Tag extends \yii\db\ActiveRecord
             [['created_user_id'], 'integer'],
             [['category_id'], 'safe'],
             [['title'], 'string', 'max' => 20],
-            [['created_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_user_id' => 'id']], // TODO: className() - deprecated, вместо этого надо использовать сlass: User::class
+            [['created_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_user_id' => 'id']], // TODO1: className() - deprecated, вместо этого надо использовать сlass: User::class
         ];
     }
 
@@ -58,7 +58,7 @@ class Tag extends \yii\db\ActiveRecord
      */
     public function getCreatedUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_user_id']); // TODO: className() - deprecated
+        return $this->hasOne(User::className(), ['id' => 'created_user_id']); // TODO1: className() - deprecated
     }
 
     /**
@@ -66,7 +66,7 @@ class Tag extends \yii\db\ActiveRecord
      */
     public function getArticles()
     {
-        return $this->hasMany(Article::className(), ['id' => 'article_id']) // TODO: className() - deprecated
+        return $this->hasMany(Article::className(), ['id' => 'article_id']) // TODO1: className() - deprecated
                 ->viaTable('tag_article', ['tag_id' => 'id']);
     }
 
