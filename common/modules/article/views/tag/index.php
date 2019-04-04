@@ -27,7 +27,7 @@ $gridColumns = [
         ];
     }
 ],
-        
+
 [
     'class' => 'kartik\grid\ActionColumn',
     'template' => '{delete}',
@@ -41,9 +41,9 @@ $gridColumns = [
                 'data-params'  => [ 'id' => $model->id ],
             ]);
         },
-    ], 
+    ],
 ]
-        
+
 ];
 
 // the GridView widget (you must use kartik\grid\GridView)
@@ -53,11 +53,8 @@ echo GridView::widget([
     'filterModel' => $searchModel,
     'columns' => $gridColumns,
 
-    'pjax' => true, // pjax is set to always true for this demo
-    // set your toolbar
-    'toolbar' =>  [
-
-    ],
+    'pjax' => true,
+    'toolbar' =>  [],
     'toggleDataContainer' => ['class' => 'btn-group mr-2'],
     // set export properties
     'export' => [
