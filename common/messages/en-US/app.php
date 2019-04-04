@@ -44,5 +44,5 @@ return [
     'ALL' => 'All',
     'RU' => 'Ru',
     'EN' => 'En',
-    'TITLE' => 'Title'
+    'TAG_TITLE' => 'Title'
 ];

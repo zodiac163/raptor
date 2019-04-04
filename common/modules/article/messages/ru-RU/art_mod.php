@@ -39,5 +39,7 @@ return [
     'ARTICLE_CREATE' => 'Создать материал',
     'ARTICLE_CAT_SELECT' => 'Выберите категорию ...',
     'ARTICLE_FILE_DELETED' => 'Файл удален',
-    'ARTICLE_OPEN_MATERIAL' => 'Открыть материал'
+    'ARTICLE_OPEN_MATERIAL' => 'Открыть материал',
+    'SELECT_TAGS' => 'Укажите тэги',
+    'ARTICLE_TAGS' => 'Теги'
 ];

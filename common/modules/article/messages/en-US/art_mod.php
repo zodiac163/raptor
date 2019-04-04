@@ -39,5 +39,7 @@ return [
     'ARTICLE_CREATE' => 'Create Article',
     'ARTICLE_CAT_SELECT' => 'Select category ...',
     'ARTICLE_FILE_DELETED' => 'File deleted',
-    'ARTICLE_OPEN_MATERIAL' => 'Open material'
+    'ARTICLE_OPEN_MATERIAL' => 'Open material',
+    'SELECT_TAGS' => 'Select tags',
+    'ARTICLE_TAGS' => 'Tags',
 ];

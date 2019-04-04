@@ -21,7 +21,7 @@ $gridColumns = [
     'attribute'=>'title',
     'editableOptions'=> function ($model, $key, $index) {
         return [
-            'header'=>Yii::t('app', 'TITLE'),
+            'header'=>Yii::t('app', 'TAG_TITLE'),
             'size'=>'md',
             'formOptions'=>['action' => ['/article/tag/editTag']], // point to the new action
         ];
@@ -66,7 +66,7 @@ echo GridView::widget([
     'responsive' => false,
     'panel' => [
         'type' => GridView::TYPE_PRIMARY,
-        'heading' => Yii::t('app', 'TITLE'),
+        'heading' => Yii::t('app', 'TAG_TITLE'),
     ],
 ]);
 

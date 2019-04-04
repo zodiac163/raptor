@@ -78,7 +78,7 @@ class Article extends \yii\db\ActiveRecord
             'created_time' => Yii::t('art_mod', 'ARTICLE_CREATED_TIME'),
             'modified_user_id' => Yii::t('art_mod', 'ARTICLE_MODIFIED_USER_ID'),
             'modified_time' => Yii::t('art_mod', 'ARTICLE_MODIFIED_TIME'),
-            // TODO1: добавить элемент tags и задать значение через перевод. Перевод задать в .../modules/article/messages/**LANG**/art_mod.php
+            'tags' => Yii::t('art_mod', 'ARTICLE_TAGS'),
         ];
     }
 
@@ -153,7 +153,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function getTags()
     {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id']) // TODO1: className() - deprecated, вместо этого надо использовать сlass: Tag::class
+        return $this->hasMany(Tag::class, ['id' => 'tag_id'])
                 ->viaTable('tag_article', ['article_id' => 'id']);
     }
 }
