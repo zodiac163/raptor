@@ -13,6 +13,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'gridview' => ['class' => 'kartik\grid\Module'],
         'permit' => [
             'class' => 'developeruz\db_rbac\Yii2DbRbac',
             'layout' => null,

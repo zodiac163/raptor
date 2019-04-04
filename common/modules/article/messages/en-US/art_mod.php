@@ -35,6 +35,7 @@ return [
     'ARTICLE_PUBLISHED' => 'Published',
     'ARTICLE_TITLE' => 'Title',
     'ARTICLE_PAGE_TITLE' => 'Articles',
+    'ARTICLE_PAGE_TAGS' => 'Tags',
     'ARTICLE_CREATE' => 'Create Article',
     'ARTICLE_CAT_SELECT' => 'Select category ...',
     'ARTICLE_FILE_DELETED' => 'File deleted',

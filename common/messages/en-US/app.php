@@ -32,6 +32,7 @@ return [
     'MODULE_USERS_LABEL_CREATED' => 'Created at',
     'NAV_MATERIAL' => 'Content',
     'NAV_MATERIAL_CATEGORY' => 'Category',
+    'NAV_MATERIAL_TAGS' => 'Tags',
     'Administration' => '',
     'SAVE' => 'Save',
     'YES' => 'Yes',
@@ -42,5 +43,6 @@ return [
     'ROOT' => 'Root',
     'ALL' => 'All',
     'RU' => 'Ru',
-    'EN' => 'En'
+    'EN' => 'En',
+    'TITLE' => 'Title'
 ];

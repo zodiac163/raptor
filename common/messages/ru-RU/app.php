@@ -23,6 +23,7 @@ return [
     'NAV_USERS_ACCESS' => 'Управление доступами',
     'NAV_USERS_ROLES' => 'Управление ролями',
     'NAV_MATERIAL_ARTICLE' => 'Статьи',
+    'NAV_MATERIAL_TAGS' => 'Тэги',
     'NAV_MENU_LIST' => 'Список меню',
     'MODULE_USERS_TITLE' => 'Пользователи',
     'MODULE_USERS_CREATE' => 'Создать пользователя',
@@ -42,5 +43,6 @@ return [
     'ROOT' => 'Корень',
     'ALL' => 'Любой',
     'RU' => 'Рус',
-    'EN' => 'Анг'
+    'EN' => 'Анг',
+    'TITLE' => 'Название',
 ];

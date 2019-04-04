@@ -35,6 +35,7 @@ return [
     'ARTICLE_PUBLISHED' => 'Опубликовано',
     'ARTICLE_TITLE' => 'Заголовок',
     'ARTICLE_PAGE_TITLE' => 'Материалы',
+    'ARTICLE_PAGE_TAGS' => 'Тэги',
     'ARTICLE_CREATE' => 'Создать материал',
     'ARTICLE_CAT_SELECT' => 'Выберите категорию ...',
     'ARTICLE_FILE_DELETED' => 'Файл удален',
