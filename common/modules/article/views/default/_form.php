@@ -105,17 +105,17 @@ common\modules\article\assets\ArticleAsset::register($this);
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <?= '<label class="control-label">Выберите тэги</label>';?>
+                <?= '<label class="control-label">Выберите тэги</label>';?> <!-- TODO: Label здесь не нужна она подтягивается из модели. В модели Article в методе attributeLabels надо добавить элемент tags и задать ему имя через перевод. Перевод задать в .../modules/article/messages/**LANG**/art_mod.php  -->
                 <?= $form->field($model, 'tags')->widget(Select2::class, [
                     'name' => 'color_2',
                     'value' => ArrayHelper::map($currentTags, 'id', 'title'),
                     'data' => ArrayHelper::map($tags, 'id', 'title'),
                     'maintainOrder' => true,
-                    'options' => ['placeholder' => 'Select a color ...', 'multiple' => true],
+                    'options' => ['placeholder' => 'Select a color ...', 'multiple' => true], // TODO: placeholder надо поманять на актуальный по типц: Yii::t('art_mod', 'ARTICLE_CAT_SELECT'). Перевод задать в .../modules/article/messages/**LANG**/art_mod.php
                     'pluginOptions' => [
                         'tags' => true,
                         'maximumInputLength' => 10
@@ -124,9 +124,9 @@ common\modules\article\assets\ArticleAsset::register($this);
                 ?>
             </div>
         </div>
-    </div>    
-    
-    
+    </div>
+
+
     <div class="row">
         <div class="col-md-6">
             <?= $form->field($model, 'published')->widget(SwitchInput::class, [

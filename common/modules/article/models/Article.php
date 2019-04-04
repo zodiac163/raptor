@@ -78,6 +78,7 @@ class Article extends \yii\db\ActiveRecord
             'created_time' => Yii::t('art_mod', 'ARTICLE_CREATED_TIME'),
             'modified_user_id' => Yii::t('art_mod', 'ARTICLE_MODIFIED_USER_ID'),
             'modified_time' => Yii::t('art_mod', 'ARTICLE_MODIFIED_TIME'),
+            // TODO: добавить элемент tags и задать значение через перевод. Перевод задать в .../modules/article/messages/**LANG**/art_mod.php
         ];
     }
 
@@ -137,28 +138,22 @@ class Article extends \yii\db\ActiveRecord
     public function checkHits() {
 
         $session = Yii::$app->session;
-        if(!$session->has('hits_array'))
-            {
-
+        if (!$session->has('hits_array')) {
             $session->set('hits_array', array());
-            
-            }
+        }
 
-            $temp = $session->get('hits_array');
-            if(!in_array($this->id, $temp) || empty($temp))
-                {
-                
-                $temp[] = $this->id;
-                $session->set('hits_array', $temp);
+        $temp = $session->get('hits_array');
+        if (!in_array($this->id, $temp) || empty($temp)) {
+            $temp[] = $this->id;
+            $session->set('hits_array', $temp);
+            $this->updateCounters(['hits' => 1]);
 
-                $this->updateCounters(['hits' => 1]);
-                
-                }
+        }
     }
-    
+
     public function getTags()
     {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id']) // TODO: className() - deprecated, вместо этого надо использовать сlass: Tag::class
                 ->viaTable('tag_article', ['article_id' => 'id']);
     }
 }

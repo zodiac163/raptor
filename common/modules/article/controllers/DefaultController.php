@@ -72,11 +72,9 @@ class DefaultController extends Controller
                 ];
             }
         } // var_dump($images); exit;
-        
-        
-        $model->checkHits();
-        
-        
+
+        $model->checkHits(); // Увеличение кол-ва просмотров материала
+
         return $this->render('view', [
             'model' => $model,
             'images' => $images
