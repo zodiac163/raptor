@@ -33,10 +33,17 @@ return [
     'NAV_MATERIAL' => 'Content',
     'NAV_MATERIAL_CATEGORY' => 'Category',
     'NAV_MATERIAL_TAGS' => 'Tags',
+    
+    'NAV_CATALOG' => 'Catalog',
+    'NAV_PRODUCTS_MANUFACTURERS' => 'Manufacturers',
+    'NAV_PRODUCTS_CATEGORY' => 'Categories',
+    'NAV_PRODUCTS_PRODUCT' => 'Product',
+    
     'Administration' => '',
     'SAVE' => 'Save',
     'YES' => 'Yes',
     'NO' => 'No',
+    'VIEW' => 'View',
     'UPDATE' => 'Update',
     'DELETE' => 'Delete',
     'CREATE' => 'Create',

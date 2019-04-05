@@ -33,10 +33,18 @@ return [
     'MODULE_USERS_LABEL_CREATED' => 'Создан',
     'NAV_MATERIAL' => 'Контент',
     'NAV_MATERIAL_CATEGORY' => 'Категории',
+    
+    'NAV_CATALOG' => 'Каталог',
+    'NAV_PRODUCTS_MANUFACTURERS' => 'Производители',
+    'NAV_PRODUCTS_CATEGORY' => 'Категории',
+    'NAV_PRODUCTS_PRODUCT' => 'Продукты',
+    
+    
     'Administration' => '',
     'SAVE' => 'Сохранить',
     'YES' => 'Да',
     'NO' => 'Нет',
+    'VIEW' => 'Просмотреть',
     'UPDATE' => 'Изменить',
     'DELETE' => 'Удалить',
     'CREATE' => 'Создать',

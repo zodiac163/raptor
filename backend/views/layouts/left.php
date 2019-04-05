@@ -26,6 +26,11 @@ foreach ($menu as $item) {
                         ['label' => Yii::t('app', 'NAV_MATERIAL_ARTICLE'), 'url' => ['/article/default/index']],
                         ['label' => Yii::t('app', 'NAV_MATERIAL_TAGS'), 'url' => ['/article/tag/index']],
                     ]],
+                    ['label' => Yii::t('app', 'NAV_CATALOG'), 'icon' => 'folder-open-o', 'url' => '#', 'items' => [
+                        ['label' => Yii::t('app', 'NAV_PRODUCTS_CATEGORY'), 'url' => ['/product/product-category/index']],
+                        ['label' => Yii::t('app', 'NAV_PRODUCTS_PRODUCT'), 'url' => ['/product/product/index']],
+                        ['label' => Yii::t('app', 'NAV_PRODUCTS_MANUFACTURERS'), 'url' => ['/product/manufacturer/index']],
+                    ]],
                     ['label' => Yii::t('app', 'NAV_MENU'), 'icon' => 'bars', 'url' => '#', 'items' =>
                         $menuList
                     ],

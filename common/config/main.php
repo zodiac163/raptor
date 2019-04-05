@@ -6,7 +6,7 @@ return [
         '@npm'   => '@vendor/npm-asset',
         '@moduleArticle' => '@common/modules/article',
     ],
-    'bootstrap' => ['category', 'article', 'menu'],
+    'bootstrap' => ['category', 'article', 'menu', 'product'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
@@ -57,6 +57,10 @@ return [
         ],
         'menu' => [
             'class' => 'common\modules\menu\Module',
+        ],
+        
+        'product' => [
+            'class' => 'common\modules\product\Module',
         ],
     ],
 ];
