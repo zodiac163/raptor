@@ -29,7 +29,7 @@ class m190404_123526_create_manufacturer_table extends Migration
             'additional_files' => $this->text(),
             'language' => $this->char(7)->notNull()->defaultvalue('*'),
             'created_user_id' => $this->integer()->notNull(),
-            'created_time' => $this->timestamp()->notNull(),//->defaultValue(['expression'=>'CURRENT_TIMESTAMP']),
+            'created_time' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'modified_user_id' => $this->integer(),
             'modified_time' => $this->timestamp()->defaultValue(NULL),
         ]);

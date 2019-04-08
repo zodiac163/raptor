@@ -51,7 +51,7 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'alias', 'manufacturer_id', 'category_id', 'featured', 'ordering', 'published', 'hits', 'created_user_id'], 'required'],
+            [['title', 'description', 'alias', 'manufacturer_id', 'category_id', 'featured', 'published'], 'required'],
             [['description', 'images', 'metadata', 'video_link', 'specifications', 'additional_equipment'], 'string'],
             [['manufacturer_id', 'category_id', 'featured', 'ordering', 'published', 'hits', 'created_user_id', 'modified_user_id'], 'integer'],
             [['created_time', 'modified_time'], 'safe'],
@@ -63,6 +63,21 @@ class Product extends \yii\db\ActiveRecord
             [['created_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_user_id' => 'id']],
             [['modified_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modified_user_id' => 'id']],
         ];
+    }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->created_user_id = Yii::$app->user->id;
+                $this->hits = 0;
+                } else {
+                $this->modified_user_id = Yii::$app->user->id;
+            }
+            return true;
+        } else {
+        return false;
+        }
     }
 
     /**

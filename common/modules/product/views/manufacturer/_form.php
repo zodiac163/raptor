@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\tinymce\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model common\modules\product\models\Manufacturer */
@@ -16,8 +17,26 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'shortname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?> <!-- TODO1: Нужен wysiwyg как в common/modules/article/views/default/_form.php в поле fulltext -->
-
+    <?= $form->field($model, 'description')->widget(TinyMce::class, [
+                'options' => ['rows' => 10],
+                'language' => 'ru',
+                'clientOptions' => [
+                    'plugins' => [
+                        'advlist autolink lists link charmap hr preview pagebreak',
+                        'searchreplace wordcount textcolor visualblocks visualchars code fullscreen nonbreaking',
+                        'save insertdatetime media table contextmenu template paste image responsivefilemanager filemanager',
+                    ],
+                    'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager link image media',
+                    'external_filemanager_path' => '/master/plugins/responsivefilemanager/filemanager/',
+                    'filemanager_title' => 'Filemanager',
+                    'external_plugins' => [
+                        //Иконка/кнопка загрузки файла в диалоге вставки изображения.
+                        'filemanager' => '/master/plugins/responsivefilemanager/filemanager/plugin.min.js',
+                        //Иконка/кнопка загрузки файла в панеле иснструментов.
+                        'responsivefilemanager' => '/master/plugins/responsivefilemanager/tinymce/plugins/responsivefilemanager/plugin.min.js',
+                    ],
+                ]
+            ]); ?>
     <?= $form->field($model, 'activity_kind')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
@@ -38,15 +57,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'additional_files')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'language')->textInput(['maxlength' => true]) ?> <!-- TODO1: Нужен выпадающий список, пример в common/modules/category/views/default/_form.php -->
-
-    <?= $form->field($model, 'created_user_id')->textInput() ?> <!-- TODO1: должно подставляться в модели через beforeSave -->
-
-    <?= $form->field($model, 'created_time')->textInput() ?> <!-- TODO1: должно подставляться в БД через триггер (в этом случае понадобится миграция для создания триггера, пример в console/migrations/m190323_180710_article_update_trigger.php) -->
-
-    <?= $form->field($model, 'modified_user_id')->textInput() ?> <!-- TODO1: должно подставляться в модели через beforeSave -->
-
-    <?= $form->field($model, 'modified_time')->textInput() ?> <!-- TODO1: должно подставляться в БД через триггер (в этом случае понадобится миграция для создания триггера, пример в console/migrations/m190323_180710_article_update_trigger.php) -->
+    <?= $form->field($model, 'language')->dropDownList(['*' => 'Любой', 'ru-RU' => 'Русский', 'en-US' => 'Английский']) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'SAVE'), ['class' => 'btn btn-success']) ?>

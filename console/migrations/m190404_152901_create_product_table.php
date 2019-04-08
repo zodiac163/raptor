@@ -30,8 +30,9 @@ class m190404_152901_create_product_table extends Migration
             'code' => $this->string(45),
             'specifications' => $this->text(),
             'additional_equipment' => $this->text(),
+            'language' => $this->char(7)->notNull()->defaultValue('*'),
             'created_user_id' => $this->integer()->notNull(),
-            'created_time' => $this->timestamp()->notNull(),
+            'created_time' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'modified_user_id' => $this->integer(),
             'modified_time' => $this->timestamp(),
         ]);

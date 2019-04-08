@@ -48,7 +48,7 @@ class Manufacturer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fullname', 'shortname', 'created_user_id'], 'required'],
+            [['fullname', 'shortname'], 'required'],
             [['description', 'social_networks', 'branches', 'contact_person', 'additional_files'], 'string'],
             [['created_user_id', 'modified_user_id'], 'integer'],
             [['created_time', 'modified_time'], 'safe'],
@@ -58,6 +58,20 @@ class Manufacturer extends \yii\db\ActiveRecord
             [['created_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_user_id' => 'id']],
             [['modified_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modified_user_id' => 'id']],
         ];
+    }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->created_user_id = Yii::$app->user->id;
+                } else {
+                $this->modified_user_id = Yii::$app->user->id;
+            }
+            return true;
+        } else {
+        return false;
+        }
     }
 
     /**

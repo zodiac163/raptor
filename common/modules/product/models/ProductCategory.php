@@ -31,6 +31,20 @@ class ProductCategory extends \yii\db\ActiveRecord
     {
         return 'product_category';
     }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($insert) {
+                $this->created_user_id = Yii::$app->user->id;
+                } else {
+                $this->modified_user_id = Yii::$app->user->id;
+            }
+            return true;
+        } else {
+        return false;
+        }
+    }
 
     /**
      * {@inheritdoc}
@@ -38,7 +52,7 @@ class ProductCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'created_user_id'], 'required'],
+            [['title', 'description'], 'required'],
             [['parent_id', 'created_user_id', 'modified_user_id'], 'integer'],
             [['created_time', 'modified_time'], 'safe'],
             [['title'], 'string', 'max' => 45],

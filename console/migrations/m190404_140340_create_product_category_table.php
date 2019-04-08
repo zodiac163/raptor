@@ -19,7 +19,7 @@ class m190404_140340_create_product_category_table extends Migration
             'parent_id' => $this->integer(),
             'language' => $this->char(7)->notNull()->defaultValue('*'),
             'created_user_id' => $this->integer()->notNull(),
-            'created_time' => $this->timestamp()->notNull(),
+            'created_time' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'modified_user_id' => $this->integer(),
             'modified_time' => $this->timestamp(),
         ]);
