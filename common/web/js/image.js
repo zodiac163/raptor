@@ -6,7 +6,7 @@ $(function() {
   }).on('filebatchuploadsuccess', function(event, data) {
     var responsedata = data.response;
     if (responsedata.urlForSave) {
-      let images = $('#article-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#article-images').val());
+      let images = $('#uploaded-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#uploaded-images').val());
       let imagesArray = images.urls ? images.urls : [];
       let imageObj = {}
       imageObj.url = responsedata.urlForSave
@@ -14,7 +14,7 @@ $(function() {
       imageObj.size = responsedata.initialPreviewConfig[0].size
       imagesArray.push(imageObj)
       images.urls = imagesArray
-      $('#article-images').val(JSON.stringify(images))
+      $('#uploaded-images').val(JSON.stringify(images))
     }
   }).on('fileclear', function(event) {
     //console.log("fileclear");
@@ -34,10 +34,10 @@ $(function() {
 
     });
   }).on('filedeleted', function(event, id, index) {
-    let images = $('#article-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#article-images').val());
+    let images = $('#uploaded-images').val() === "" ? JSON.parse('{}') : JSON.parse($('#uploaded-images').val());
     let imagesArray = images.urls ? images.urls : [];
     imagesArray = imagesArray.filter(x => x.url !== id);
     images.urls = imagesArray
-    $('#article-images').val(JSON.stringify(images))
+    $('#uploaded-images').val(JSON.stringify(images))
   })
 });

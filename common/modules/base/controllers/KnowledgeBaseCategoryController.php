@@ -1,19 +1,18 @@
 <?php
 
-namespace common\modules\product\controllers;
+namespace common\modules\base\controllers;
 
 use Yii;
-use common\modules\product\models\Product;
-use common\modules\product\models\ProductSearch;
+use common\modules\base\models\KnowledgeBaseCategory;
+use common\modules\base\models\KnowledgeBaseCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use common\models\RaptorHelper;
 
 /**
- * ProductController implements the CRUD actions for Product model.
+ * KnowledgeBaseCategoryController implements the CRUD actions for KnowledgeBaseCategory model.
  */
-class ProductController extends Controller
+class KnowledgeBaseCategoryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,12 +30,12 @@ class ProductController extends Controller
     }
 
     /**
-     * Lists all Product models.
+     * Lists all KnowledgeBaseCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new KnowledgeBaseCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single KnowledgeBaseCategory model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,30 +58,25 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new KnowledgeBaseCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new KnowledgeBaseCategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        
-        //var_dump($model->errors);
-        //exit;
 
         return $this->render('create', [
             'model' => $model,
-            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
-            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing KnowledgeBaseCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,7 +96,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing KnowledgeBaseCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,28 +110,18 @@ class ProductController extends Controller
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the KnowledgeBaseCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return KnowledgeBaseCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = KnowledgeBaseCategory::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-    }
-    
-    public function actionUpload() {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return RaptorHelper::fileUpload('base', 'product');
-    }
-
-    public function actionRemovefile() {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return RaptorHelper::fileRemove();
+        throw new NotFoundHttpException(Yii::t('base_mod', 'The requested page does not exist.'));
     }
 }

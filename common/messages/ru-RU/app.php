@@ -17,6 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'NAV_BASE' => 'База знаний',
+    'NAV_BASE_CATEGORY' => 'Категории',
+    'NAV_BASE_ARTICLES' => 'Статьи',
+    'NAV_BASE_JOURNAL' => 'Журнал',
     'NAV_MENU' => 'Меню',
     'NAV_USERS' => 'Пользователи',
     'NAV_USERS_LIST' => 'Список пользователей',

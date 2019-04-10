@@ -17,6 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'NAV_BASE' => 'Knowledge base',
+    'NAV_BASE_CATEGORY' => 'Categories',
+    'NAV_BASE_ARTICLES' => 'Articles',
+    'NAV_BASE_JOURNAL' => 'Journal',
     'NAV_MENU' => 'Menu',
     'NAV_USERS' => 'Users',
     'NAV_USERS_LIST' => 'Users list',

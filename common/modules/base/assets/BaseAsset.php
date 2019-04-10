@@ -6,11 +6,11 @@
  * Time: 14:21
  */
 
-namespace common\modules\article\assets;
+namespace common\modules\base\assets;
 
 use yii\web\AssetBundle;
 
-class ArticleAsset extends AssetBundle
+class BaseAsset extends AssetBundle
 {
     public $sourcePath = '@common/web/';
     //public $css = ['css/style_ip.css'];

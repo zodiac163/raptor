@@ -1,19 +1,19 @@
 <?php
 
-namespace common\modules\product\controllers;
+namespace common\modules\base\controllers;
 
 use Yii;
-use common\modules\product\models\Product;
-use common\modules\product\models\ProductSearch;
+use common\modules\base\models\KnowledgeBase;
+use common\modules\base\models\KnowledgeBaseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use common\models\RaptorHelper;
+use common\models\RaptorHelper;
 
 /**
- * ProductController implements the CRUD actions for Product model.
+ * KnowledgeBaseController implements the CRUD actions for KnowledgeBase model.
  */
-class ProductController extends Controller
+class KnowledgeBaseController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,12 +31,12 @@ class ProductController extends Controller
     }
 
     /**
-     * Lists all Product models.
+     * Lists all KnowledgeBase models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new KnowledgeBaseSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,33 +46,50 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single KnowledgeBase model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $imagesSource = $model->images;
+        $images = [];
+        if ($imagesSource) {
+            $imagesDecode = json_decode($imagesSource);
+            foreach ($imagesDecode->urls as $img) {
+                $t = getimagesize('http://' .Yii::$app->params['fileStore'] . $img->url);
+                $images[] = [
+                    'image' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'thumb' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'title' => $img->caption,
+                    'caption' => $img->caption,
+                    'size' => $t[0] . 'x' . $t[1]
+                ];
+            }
+        } // var_dump($images); exit;
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'images' => $images,
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new KnowledgeBase model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new KnowledgeBase();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        
-        //var_dump($model->errors);
-        //exit;
 
         return $this->render('create', [
             'model' => $model,
@@ -82,7 +99,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing KnowledgeBase model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,13 +113,21 @@ class ProductController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        if (!Yii::$app->request->isPost) {
+            unset($_SESSION['upload_files']);
+        }
+        
+        $imagePrep = $model->imagePreparation();
+        
         return $this->render('update', [
             'model' => $model,
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing KnowledgeBase model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,28 +141,29 @@ class ProductController extends Controller
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the KnowledgeBase model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return KnowledgeBase the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = KnowledgeBase::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(Yii::t('base_mod', 'PAGE_DOES_NOT_EXIST'));
     }
     
     public function actionUpload() {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return RaptorHelper::fileUpload('base', 'product');
+        return RaptorHelper::fileUpload('base', 'knowledge-base');
     }
 
     public function actionRemovefile() {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return RaptorHelper::fileRemove();
     }
+    
 }

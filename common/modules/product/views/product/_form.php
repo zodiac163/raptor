@@ -52,7 +52,7 @@ use kartik\switchinput\SwitchInput;
         'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
         'browseLabel' =>  'Select Photo',
         'maxFileCount' => 10,
-        'uploadUrl' => Url::to(['/article/default/upload']),
+        'uploadUrl' => Url::to(['/product/product/upload']),
         'uploadAsync' => false,
         'initialPreviewAsData' => true,
         'overwriteInitial' => false,

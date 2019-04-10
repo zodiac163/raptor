@@ -14,7 +14,7 @@ use yii\helpers\Url;
 
 class RaptorHelper
 {
-    public static function fileUpload() {
+    public static function fileUpload($module = 'article', $controller = 'default') {
         $preview = $config = $errors = [];
         $newShortUrl = '';
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
@@ -23,7 +23,7 @@ class RaptorHelper
             return [];
         }
         $total = is_array($_FILES[$input]['name']) ? count($_FILES[$input]['name']) : 1;
-        $path = Yii::getAlias('@common') . '/../static/article/';
+        $path = Yii::getAlias('@common') . '/../static/'.$module.'/';
         $dir = md5(date('m.Y'));
         if (!file_exists($path . $dir)) {
             mkdir($path . $dir, 0777);
@@ -34,8 +34,8 @@ class RaptorHelper
             $fileSize = $_FILES[$input]['size'][$i];
             if ($tmpFilePath != ""){
                 $newFilePath = $path . $dir . '/'. $fileName;
-                $newFileUrl = $protocol . Yii::$app->params['fileStore'] . '/article/' . $dir . '/' . $fileName;
-                $newShortUrl = '/article/' . $dir . '/' . $fileName;
+                $newFileUrl = $protocol . Yii::$app->params['fileStore'] . '/'.$module.'/' . $dir . '/' . $fileName;
+                $newShortUrl = '/'.$module.'/' . $dir . '/' . $fileName;
 
                 //Upload the file into the new path
                 if(move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -47,7 +47,7 @@ class RaptorHelper
                         'caption' => $fileName,
                         'size' => $fileSize,
                         'downloadUrl' => $newFileUrl, // the url to download the file
-                        'url' => Url::to(['/article/default/removefile'])
+                        'url' => Url::to(['/'.$module.'/'.$controller.'/removefile'])
                     ];
                 } else {
                     $errors[] = $fileName;
@@ -62,6 +62,7 @@ class RaptorHelper
             $img = count($errors) === 1 ? 'file "' . $errors[0]  . '" ' : 'files: "' . implode('", "', $errors) . '" ';
             $out['error'] = 'Oh snap! We could not upload the ' . $img . 'now. Please try again later.';
         }
+        
         return $out;
     }
 
