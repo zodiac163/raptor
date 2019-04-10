@@ -14,20 +14,28 @@ use kartik\select2\Select2;
     
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => '6']) ?>
-   
-    <?= $form->field($model, 'parent_id')->widget(Select2::class, [
-        'data' => ArrayHelper::map(\common\modules\product\models\ProductCategory::find()->all(), 'id', 'title'),
-        'options' => ['placeholder' => Yii::t('prod_mod', 'CATEGORY_SELECT_PARENT')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <div class="row">
+        <div class="col-md-6">
+        <?= $form->field($model, 'parent_id')->widget(Select2::class, [
+            'data' => ArrayHelper::map(\common\modules\product\models\ProductCategory::find()->all(), 'id', 'title'),
+            'options' => ['placeholder' => Yii::t('prod_mod', 'CATEGORY_SELECT_PARENT')],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]); ?>
+        </div>
+        
+        <div class="col-md-6">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
     
-    <?= $form->field($model, 'language')->dropDownList(['*' => 'Любой', 'ru-RU' => 'Русский', 'en-US' => 'Английский']) ?>
-
+    <div class="col-md-12">
+        <?= $form->field($model, 'description')->textarea(['rows' => '6']) ?>
+    </div>
+    <div class="col-md-12">
+        <?= $form->field($model, 'language')->dropDownList(['*' => 'Любой', 'ru-RU' => 'Русский', 'en-US' => 'Английский']) ?>
+    </div>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'SAVE'), ['class' => 'btn btn-success']) ?>
     </div>

@@ -8,6 +8,8 @@ use kartik\file\FileInput;
 use yii\helpers\Url;
 use kartik\switchinput\SwitchInput;
 
+common\modules\product\assets\ProdAsset::register($this);
+
 /* @var $this yii\web\View */
 /* @var $model common\modules\product\models\Product */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,12 +19,17 @@ use kartik\switchinput\SwitchInput;
     
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
-
+    <div class="row">
+        <div class="col-md-6">
     <?= $form->field($model, 'manufacturer_id')->widget(Select2::class, [
         'data' => ArrayHelper::map(\common\modules\product\models\Manufacturer::find()->all(), 'id', 'shortname'),
         'options' => ['placeholder' => Yii::t('prod_mod', 'MANUFACTURER_SELECT')],
@@ -30,14 +37,27 @@ use kartik\switchinput\SwitchInput;
             'allowClear' => true
         ],
     ]); ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'category_id')->widget(Select2::class, [
+                'data' => ArrayHelper::map(\common\modules\product\models\ProductCategory::find()->all(), 'id', 'title'),
+                'options' => ['placeholder' => Yii::t('prod_mod', 'CATEGORY_SELECT_PARENT')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        </div>
+    </div>
     
-    <?= $form->field($model, 'category_id')->widget(Select2::class, [
-        'data' => ArrayHelper::map(\common\modules\product\models\ProductCategory::find()->all(), 'id', 'title'),
-        'options' => ['placeholder' => Yii::t('prod_mod', 'CATEGORY_SELECT_PARENT')],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <div class="row">
+        <div class="col-md-6">
+    <?= $form->field($model, 'manufacturer_link')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
         
     <?php echo FileInput::widget([
     'id' => 'fileUpload',
@@ -63,6 +83,8 @@ use kartik\switchinput\SwitchInput;
         'progressClass' => 'hide',
     ]
 ]); ?>
+    
+    <?= $form->field($model, 'images')->hiddenInput(['id' => 'uploaded-images'])->label(false) ?>
     
     <div class="row">
         <div class="col-md-6">
@@ -90,11 +112,7 @@ use kartik\switchinput\SwitchInput;
     
     <?= $form->field($model, 'metadata')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'manufacturer_link')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'video_link')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'specifications')->textarea(['rows' => 6]) ?>
 

@@ -57,7 +57,7 @@ class ProductCategorySearch extends ProductCategory
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        $query->where(['>','id','1'])->andFilterWhere([
             'id' => $this->id,
             'parent_id' => $this->parent_id,
             'created_user_id' => $this->created_user_id,

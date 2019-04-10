@@ -54,26 +54,7 @@ common\modules\base\assets\BaseAsset::register($this);
     
     <?= $form->field($model, 'image')->hiddenInput(['id' => 'uploaded-images'])->label(false) ?>
 
-    <?= $form->field($model, 'description')->widget(TinyMce::class, [
-                'options' => ['rows' => 6],
-                'language' => 'ru',
-                'clientOptions' => [
-                    'plugins' => [
-                        'advlist autolink lists link charmap hr preview pagebreak',
-                        'searchreplace wordcount textcolor visualblocks visualchars code fullscreen nonbreaking',
-                        'save insertdatetime media table contextmenu template paste image responsivefilemanager filemanager',
-                    ],
-                    'toolbar' => 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | responsivefilemanager link image media',
-                    'external_filemanager_path' => '/master/plugins/responsivefilemanager/filemanager/',
-                    'filemanager_title' => 'Filemanager',
-                    'external_plugins' => [
-                        //Иконка/кнопка загрузки файла в диалоге вставки изображения.
-                        'filemanager' => '/master/plugins/responsivefilemanager/filemanager/plugin.min.js',
-                        //Иконка/кнопка загрузки файла в панеле иснструментов.
-                        'responsivefilemanager' => '/master/plugins/responsivefilemanager/tinymce/plugins/responsivefilemanager/plugin.min.js',
-                    ],
-                ]
-            ]); ?>
+    <?= $form->field($model, 'description')->textInput() ?>
     
     <?= $form->field($model, 'date')->widget(DatePicker::class, [
         'name' => 'datepicker',

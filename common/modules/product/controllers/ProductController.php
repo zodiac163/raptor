@@ -8,7 +8,7 @@ use common\modules\product\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//use common\models\RaptorHelper;
+use common\models\RaptorHelper;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -53,8 +53,28 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+    $model = $this->findModel($id);
+        $imagesSource = $model->images;
+        $images = [];
+        if ($imagesSource) {
+            $imagesDecode = json_decode($imagesSource);
+            foreach ($imagesDecode->urls as $img) {
+                $t = getimagesize('http://' .Yii::$app->params['fileStore'] . $img->url);
+                $images[] = [
+                    'image' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'thumb' => '//' . Yii::$app->params['fileStore'] . $img->url,
+                    'title' => $img->caption,
+                    'caption' => $img->caption,
+                    'size' => $t[0] . 'x' . $t[1]
+                ];
+            }
+        } // var_dump($images); exit;
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'images' => $images,
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
@@ -70,9 +90,6 @@ class ProductController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        
-        //var_dump($model->errors);
-        //exit;
 
         return $this->render('create', [
             'model' => $model,
@@ -91,13 +108,25 @@ class ProductController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        
+//                var_dump($model);
+//        exit;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        
+        if (!Yii::$app->request->isPost) {
+            unset($_SESSION['upload_files']);
+        }
+        
+        $imagePrep = $model->imagePreparation();
+        
 
         return $this->render('update', [
             'model' => $model,
+            'initialPreview' => isset($imagePrep) ? $imagePrep['initialPreview'] : [],
+            'initialPreviewConfig' => isset($imagePrep) ? $imagePrep['initialPreviewConfig'] : []
         ]);
     }
 
@@ -133,7 +162,7 @@ class ProductController extends Controller
     
     public function actionUpload() {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return RaptorHelper::fileUpload('base', 'product');
+        return RaptorHelper::fileUpload('product', 'product');
     }
 
     public function actionRemovefile() {

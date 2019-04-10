@@ -4,6 +4,7 @@ namespace common\modules\product\models;
 
 use Yii;
 use common\models\User;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "product".
@@ -52,7 +53,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'description', 'alias', 'manufacturer_id', 'category_id', 'featured', 'published'], 'required'],
-            [['description', 'images', 'metadata', 'video_link', 'specifications', 'additional_equipment'], 'string'],
+            [['description', 'images', 'metadata', 'video_link', 'specifications', 'additional_equipment', 'language'], 'string'],
             [['manufacturer_id', 'category_id', 'featured', 'ordering', 'published', 'hits', 'created_user_id', 'modified_user_id'], 'integer'],
             [['created_time', 'modified_time'], 'safe'],
             [['title', 'manufacturer_link'], 'string', 'max' => 255],
@@ -96,6 +97,7 @@ class Product extends \yii\db\ActiveRecord
             'featured' => Yii::t('prod_mod', 'FEATURED'),
             'ordering' => Yii::t('prod_mod', 'ORDERING'),
             'published' => Yii::t('prod_mod', 'PUBLISHED'),
+            'language' => Yii::t('prod_mod', 'LANGUAGE'),
             'hits' => Yii::t('prod_mod', 'HITS'),
             'metadata' => Yii::t('prod_mod', 'METADATA'),
             'manufacturer_link' => Yii::t('prod_mod', 'MANUFACTURER_LINK'),
@@ -107,6 +109,27 @@ class Product extends \yii\db\ActiveRecord
             'created_time' => Yii::t('prod_mod', 'CREATED_TIME'),
             'modified_user_id' => Yii::t('prod_mod', 'MODIFIED_USER_ID'),
             'modified_time' => Yii::t('prod_mod', 'MODIFIED_TIME'),
+        ];
+    }
+    
+        public function imagePreparation() {
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+
+        $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+        $baseImages = json_decode($this->images);
+        if ($baseImages && isset($baseImages->urls)) {
+            foreach ($baseImages->urls as $image) {
+                $initialPreview[] = $protocol . Yii::$app->params['fileStore'] . $image->url;
+                $image->key = $image->url;
+                $image->url = Url::to(['/base/knowledge-base/removefile']);
+                $initialPreviewConfig[] = $image;
+            }
+        }
+
+        return [
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig
         ];
     }
 

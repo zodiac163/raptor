@@ -30,7 +30,7 @@ class RaptorHelper
         }
         for ($i = 0; $i < $total; $i++) {
             $tmpFilePath = $_FILES[$input]['tmp_name'][$i];
-            $fileName = $_FILES[$input]['name'][$i];
+            $fileName = md5($_FILES[$input]['name'][$i]);
             $fileSize = $_FILES[$input]['size'][$i];
             if ($tmpFilePath != ""){
                 $newFilePath = $path . $dir . '/'. $fileName;

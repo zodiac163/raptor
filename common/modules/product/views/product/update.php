@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'UPDATE');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'initialPreview' => $initialPreview,
+        'initialPreviewConfig' => $initialPreviewConfig
     ]) ?>
 
 </div>

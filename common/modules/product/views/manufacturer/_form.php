@@ -13,10 +13,35 @@ use dosamigos\tinymce\TinyMce;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <div class="row">
+        <div class="col-md-6">
     <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
-
+        </div>
+        <div class="col-md-6">
     <?= $form->field($model, 'shortname')->textInput(['maxlength' => true]) ?>
-
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+    <?= $form->field($model, 'activity_kind')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+    <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'site')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'mail')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
     <?= $form->field($model, 'description')->widget(TinyMce::class, [
                 'options' => ['rows' => 10],
                 'language' => 'ru',
@@ -37,23 +62,14 @@ use dosamigos\tinymce\TinyMce;
                     ],
                 ]
             ]); ?>
-    <?= $form->field($model, 'activity_kind')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'site')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'mail')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'social_networks')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'branches')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'contact_person')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'additional_files')->textarea(['rows' => 6]) ?>
 
