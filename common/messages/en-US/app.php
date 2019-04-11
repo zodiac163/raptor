@@ -37,6 +37,7 @@ return [
     'NAV_MATERIAL' => 'Content',
     'NAV_MATERIAL_CATEGORY' => 'Category',
     'NAV_MATERIAL_TAGS' => 'Tags',
+    'NAV_SETTINGS' => 'Settings',
     
     'NAV_CATALOG' => 'Catalog',
     'NAV_PRODUCTS_MANUFACTURERS' => 'Manufacturers',

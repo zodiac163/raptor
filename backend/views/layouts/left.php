@@ -36,6 +36,7 @@ foreach ($menu as $item) {
                         ['label' => Yii::t('app', 'NAV_BASE_ARTICLES'), 'url' => ['/base/knowledge-base/index']],
                         ['label' => Yii::t('app', 'NAV_BASE_JOURNAL'), 'url' => ['/base/journal/index']],
                     ]],
+                    ['label' => Yii::t('app', 'NAV_SETTINGS'), 'url' => ['/settings/view']],
                     ['label' => Yii::t('app', 'NAV_MENU'), 'icon' => 'bars', 'url' => '#', 'items' =>
                         $menuList
                     ],

@@ -37,6 +37,7 @@ return [
     'MODULE_USERS_LABEL_CREATED' => 'Создан',
     'NAV_MATERIAL' => 'Контент',
     'NAV_MATERIAL_CATEGORY' => 'Категории',
+    'NAV_SETTINGS' => 'Настройки',
     
     'NAV_CATALOG' => 'Каталог',
     'NAV_PRODUCTS_MANUFACTURERS' => 'Производители',

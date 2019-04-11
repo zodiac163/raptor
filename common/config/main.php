@@ -20,6 +20,7 @@ return [
                 'cat/<category:.+>' => 'article/category/list',
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:(\w|-)+>/<id:\d+>' => '<module>/<controller>/<action>',
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
                 ['class' => 'frontend\components\Pages\PagesUrlRule'],
                 ['class' => 'frontend\components\Pages\StrictParseRequest'],
                 'article/<id:\d+>' => 'article/default/view',
