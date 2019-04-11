@@ -11,27 +11,51 @@ use yii\widgets\ActiveForm;
 <div class="settings-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'sys_title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'sys_state')->textInput() ?>
-
-    <?= $form->field($model, 'sys_slogan')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'sys_description')->textInput(['maxlength' => true]) ?>
-
+    
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'sys_title')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'sys_state')->textInput() ?>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
     <?= $form->field($model, 'sys_logo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'sys_footer')->textInput(['maxlength' => true]) ?>
-
+        </div>
+        <div class="col-md-6">
     <?= $form->field($model, 'adm_mail')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'sys_description')->textInput(['maxlength' => true]) ?>
+    </div>
+    
+    <div class="col-md-12">
+    <?= $form->field($model, 'sys_logo')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'sys_footer')->textInput(['maxlength' => true]) ?>
+    </div>
+    
+    <div class="col-md-12">
+        <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
+    </div>
+            
+    <div class="col-md-12">
+        <?= $form->field($model, 'sys_slogan')->textInput(['maxlength' => true]) ?>
+    </div>
+
+    <div class="col-md-12">
+        <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'SAVE'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

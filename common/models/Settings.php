@@ -49,15 +49,15 @@ class Settings extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'sys_title' => Yii::t('app', 'Sys Title'),
-            'sys_state' => Yii::t('app', 'Sys State'),
-            'sys_slogan' => Yii::t('app', 'Sys Slogan'),
-            'sys_description' => Yii::t('app', 'Sys Description'),
-            'sys_logo' => Yii::t('app', 'Sys Logo'),
-            'sys_footer' => Yii::t('app', 'Sys Footer'),
-            'adm_mail' => Yii::t('app', 'Adm Mail'),
-            'seo_description' => Yii::t('app', 'Seo Description'),
-            'seo_keywords' => Yii::t('app', 'Seo Keywords'),
+            'sys_title' => Yii::t('app', 'SETTINGS_SYS_TITLE'),
+            'sys_state' => Yii::t('app', 'SETTINGS_SYS_STATE'),
+            'sys_slogan' => Yii::t('app', 'SETTINGS_SYS_SLOGAN'),
+            'sys_description' => Yii::t('app', 'SETTINGS_SYS_DESCRIPTION'),
+            'sys_logo' => Yii::t('app', 'SETTINGS_SYS_LOGO'),
+            'sys_footer' => Yii::t('app', 'SETTINGS_SYS_FOOTER'),
+            'adm_mail' => Yii::t('app', 'SETTINGS_ADM_MAIL'),
+            'seo_description' => Yii::t('app', 'SETTINGS_SEO_DESCRIPTION'),
+            'seo_keywords' => Yii::t('app', 'SETTINGS_SEO_KEYWORDS'),
         ];
     }
 }

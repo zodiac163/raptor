@@ -44,6 +44,10 @@ phpunit.phar
 
 /static/article/*
 !/static/article/.gitkeep
+/static/base/*
+!/static/base/.gitkeep
+/static/product/*
+!/static/product/.gitkeep
 /static/uploads/*
 !/static/uploads/.gitkeep
 /static/uploads_thumbs/*

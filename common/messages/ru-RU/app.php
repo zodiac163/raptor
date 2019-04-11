@@ -44,6 +44,15 @@ return [
     'NAV_PRODUCTS_CATEGORY' => 'Категории',
     'NAV_PRODUCTS_PRODUCT' => 'Продукты',
     
+    'SETTINGS_SYS_TITLE' => 'Название сайта',
+    'SETTINGS_SYS_STATE' => 'Состояние системы',
+    'SETTINGS_SYS_SLOGAN' => 'Слоган',
+    'SETTINGS_SYS_DESCRIPTION' => 'Описание сайта',
+    'SETTINGS_SYS_LOGO' => 'Логотип',
+    'SETTINGS_SYS_FOOTER' => 'Футер',
+    'SETTINGS_ADM_MAIL' => 'Почта администратора',
+    'SETTINGS_SEO_DESCRIPTION' => 'Описание для SEO',
+    'SETTINGS_SEO_KEYWORDS' => 'Ключевые слова для SEO',
     
     'Administration' => '',
     'SAVE' => 'Сохранить',

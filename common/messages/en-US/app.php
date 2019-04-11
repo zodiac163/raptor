@@ -44,6 +44,16 @@ return [
     'NAV_PRODUCTS_CATEGORY' => 'Categories',
     'NAV_PRODUCTS_PRODUCT' => 'Product',
     
+    'SETTINGS_SYS_TITLE' => 'Site title',
+    'SETTINGS_SYS_STATE' => 'Site state',
+    'SETTINGS_SYS_SLOGAN' => 'Slogan',
+    'SETTINGS_SYS_DESCRIPTION' => 'Site description',
+    'SETTINGS_SYS_LOGO' => 'Logo',
+    'SETTINGS_SYS_FOOTER' => 'Footer',
+    'SETTINGS_ADM_MAIL' => 'Administrator\'s mail',
+    'SETTINGS_SEO_DESCRIPTION' => 'SEO description',
+    'SETTINGS_SEO_KEYWORDS' => 'SEO keywords',
+    
     'Administration' => '',
     'SAVE' => 'Save',
     'YES' => 'Yes',
