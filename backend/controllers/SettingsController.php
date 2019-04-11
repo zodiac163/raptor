@@ -1,6 +1,6 @@
 <?php
 
-namespace common\controllers;
+namespace backend\controllers;
 
 use Yii;
 use common\models\Settings;
@@ -21,7 +21,7 @@ class SettingsController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
